@@ -40,11 +40,15 @@
     .sidebar ul li:hover {
       background-color: #0c93c5;
     }
+    .sidebar ul li.active {
+      background-color: #0c93c5;
+    }
 
     .content {
       margin-left: 250px; /* Adjusted to accommodate the sidebar */
       transition: margin-left 0.3s ease;
     }
+    
 
     .toggle-btn {
       display: block;
@@ -61,14 +65,30 @@
       padding: 20px;
     }
 
+    .next-btn-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
     .next-btn {
-      display: block;
-      margin-top: 10px;
-      padding: 5px 10px;
-      background: #444;
-      color: #fff;
+      background: transparent;
       border: none;
       cursor: pointer;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .next-btn img {
+      width: 60px; /* Adjust icon size */
+      height: 60px; /* Adjust icon size */
+    }
+
+    .subtitle {
+      font-size: 12px;
+      color: #555;
+      margin-top: 5px;
     }
 
     .form-group {
@@ -259,18 +279,91 @@
             <label for="speech-therapy" style="display: block; margin-bottom: 5px; font-weight: bold;">Has the child ever received speech therapy? When? Where? What results?</label>
             <textarea id="speech-therapy" name="speechTherapy" rows="5" style="width: 400px; min-height: 100px; padding: 8px; border: 1px solid #ccc; border-radius: 5px; resize: vertical;"></textarea>
           </div>
-        <button class="next-btn" onclick="next()">Next</button>
+          <div class="next-btn-container">
+            
+            <button type="button" class="next-btn" onclick="next()"><img src="./Images/next.png" alt="Next"><span class="subtitle">Next</span></button>
+            <button type="button" class="next-btn" onclick="saveFormData(1)"><img src="./Images/save.png" alt="Save"><span class="subtitle">Save</span></button>
+          </div>
       </form>    
     </div>
+
+
+<!-------------------------------------------------------------------------------------------------------------------------->
 
 
     <div class="item-content" id="item-content-2">
         <h2>Content 2</h2>
         <p>This is the content for item 2.</p>
-        <button class="next-btn" onclick="next()">Next</button>
+        <div class="next-btn-container">
+            <button type="button" class="next-btn" onclick="previous()"><img src="./Images/Previous.png" alt="Previous"><span class="subtitle">Previous</span></button>  
+            <button type="button" class="next-btn" onclick="next()"><img src="./Images/next.png" alt="Next"><span class="subtitle">Next</span></button>
+            <button type="button" class="next-btn" onclick="saveFormData(1)"><img src="./Images/save.png" alt="Save"><span class="subtitle">Save</span></button>
+          </div>
       </div>
 
+<!-------------------------------------------------------------------------------------------------------------------------->
 
+
+<div class="item-content" id="item-content-3">
+    <h2>Content 3</h2>
+    <p>This is the content for item 3.</p>
+    <div class="next-btn-container">
+        <button type="button" class="next-btn" onclick="previous()"><img src="./Images/Previous.png" alt="Previous"><span class="subtitle">Previous</span></button>  
+        <button type="button" class="next-btn" onclick="next()"><img src="./Images/next.png" alt="Next"><span class="subtitle">Next</span></button>
+        <button type="button" class="next-btn" onclick="saveFormData(1)"><img src="./Images/save.png" alt="Save"><span class="subtitle">Save</span></button>
+        
+    </div>
+  </div>
+
+
+<!-------------------------------------------------------------------------------------------------------------------------->
+
+
+<div class="item-content" id="item-content-4">
+    <h2>Content 4</h2>
+    <p>This is the content for item 4.</p>
+    <div class="next-btn-container">
+        <button type="button" class="next-btn" onclick="previous()"><img src="./Images/Previous.png" alt="Previous"><span class="subtitle">Previous</span></button>  
+        <button type="button" class="next-btn" onclick="next()"><img src="./Images/next.png" alt="Next"><span class="subtitle">Next</span></button>
+        <button type="button" class="next-btn" onclick="saveFormData(1)"><img src="./Images/save.png" alt="Save"><span class="subtitle">Save</span></button>
+        
+    </div>
+  </div>
+
+
+<!-------------------------------------------------------------------------------------------------------------------------->
+
+
+<div class="item-content" id="item-content-5">
+    <h2>Content 5</h2>
+    <p>This is the content for item 5.</p>
+    <div class="next-btn-container">
+        <button type="button" class="next-btn" onclick="previous()"><img src="./Images/Previous.png" alt="Previous"><span class="subtitle">Previous</span></button>  
+        <button type="button" class="next-btn" onclick="next()"><img src="./Images/next.png" alt="Next"><span class="subtitle">Next</span></button>
+        <button type="button" class="next-btn" onclick="saveFormData(1)"><img src="./Images/save.png" alt="Save"><span class="subtitle">Save</span></button>
+        
+    </div>
+  </div>
+
+
+<!-------------------------------------------------------------------------------------------------------------------------->
+
+
+
+<div class="item-content" id="item-content-6">
+    <h2>Content 6</h2>
+    <p>This is the content for item 6.</p>
+    <div class="next-btn-container">
+        <button type="button" class="next-btn" onclick="previous()"><img src="./Images/Previous.png" alt="Previous"><span class="subtitle">Previous</span></button>  
+        <button type="button" class="next-btn" onclick="next()"><img src="./Images/next.png" alt="Next"><span class="subtitle">Next</span></button>
+        <button type="button" class="next-btn" onclick="saveFormData(1)"><img src="./Images/save.png" alt="Save"><span class="subtitle">Save</span></button>
+        
+    </div>
+  </div>
+
+
+
+<!-------------------------------------------------------------------------------------------------------------------------->
 
 
 
@@ -284,48 +377,56 @@
   <script>
     var currentItem = 1;
 
-function toggleSidebar() {
-  var sidebar = document.getElementById('sidebar');
-  var content = document.querySelector('.content');
-
-  if (sidebar.style.left === '0px') {
-    sidebar.style.left = '-250px';
-    content.style.marginLeft = '0';
-    document.querySelectorAll('.toggle-btn').forEach(btn => {
-      btn.textContent = 'Show';
-    });
-  } else {
-    sidebar.style.left = '0';
-    content.style.marginLeft = '250px';
-    document.querySelectorAll('.toggle-btn').forEach(btn => {
-      btn.textContent = 'Hide';
-    });
-  }
-}
-
-function showContent(itemNumber) {
-  // Hide all item contents
-  document.querySelectorAll('.item-content').forEach(content => {
-    content.style.display = 'none';
-  });
-  // Show the selected item content
-  var itemContent = document.getElementById('item-content-' + itemNumber);
-  if (itemContent) {
-    itemContent.style.display = 'block';
-  }
-  currentItem = itemNumber;
-}
-
-function next() {
-  var nextItem = currentItem + 1;
-  var itemContent = document.getElementById('item-content-' + nextItem);
-  if (itemContent) {
-    showContent(nextItem);
-  } else {
-    // If there is no next item, loop back to the first item
-    showContent(1);
-  }
-}
+    function toggleSidebar() {
+      var sidebar = document.getElementById('sidebar');
+      var content = document.querySelector('.content');
+  
+      if (sidebar.style.left === '0px') {
+        sidebar.style.left = '-250px';
+        content.style.marginLeft = '0';
+        document.querySelectorAll('.toggle-btn').forEach(btn => {
+          btn.textContent = 'Show';
+        });
+      } else {
+        sidebar.style.left = '0';
+        content.style.marginLeft = '250px';
+        document.querySelectorAll('.toggle-btn').forEach(btn => {
+          btn.textContent = 'Hide';
+        });
+      }
+    }
+  
+    function showContent(itemNumber) {
+      // Hide all item contents
+      document.querySelectorAll('.item-content').forEach(content => {
+        content.style.display = 'none';
+      });
+  
+      // Show the selected item content
+      var itemContent = document.getElementById('item-content-' + itemNumber);
+      if (itemContent) {
+        itemContent.style.display = 'block';
+      }
+  
+      currentItem = itemNumber;
+    }
+  
+    function next() {
+      if (currentItem < 6) {
+        showContent(currentItem + 1);
+      } else {
+        showContent(1);
+      }
+    }
+  
+    function previous() {
+      if (currentItem > 1) {
+        showContent(currentItem - 1);
+      } else {
+        showContent(6); // Loop back to the last item if at the first item
+      }
+    }
   </script>
+  
 </body>
 </html>
