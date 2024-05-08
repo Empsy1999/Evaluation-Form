@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sidebar Menu</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 250px;
+      height: 100%;
+      background: #06789e;
+      color: #fff;
+      transition: left 0.3s ease;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar ul li {
+      padding: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    .sidebar ul li a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .sidebar ul li:hover {
+      background-color: #0c93c5;
+    }
+    .sidebar ul li.active {
+      background-color: #0c93c5;
+    }
+
+    .content {
+      margin-left: 250px; /* Adjusted to accommodate the sidebar */
+      transition: margin-left 0.3s ease;
+    }
+    
+
+    .toggle-btn {
+      display: block;
+      margin: 10px;
+      padding: 5px;
+      background: #a29702;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    .item-content {
+      display: none;
+      padding: 20px;
+    }
+
+    .next-btn-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .next-btn {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .next-btn img {
+      width: 60px; /* Adjust icon size */
+      height: 60px; /* Adjust icon size */
+    }
+
+    .subtitle {
+      font-size: 12px;
+      color: #555;
+      margin-top: 5px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    /* Floating window styles */
+.floating-window {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 20px;
+    max-height: 80%;
+    overflow-y: auto;
+}
+
+.floating-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.floating-header h2 {
+    margin: 0;
+}
+
+.floating-content {
+    padding: 10px 0;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.sibling-info-item {
+    margin-bottom: 10px;
+}
+
+.sibling-info-item label {
+    display: inline-block;
+    width: 100px;
+    font-weight: bold;
+}
+
+.sibling-info-item span {
+    display: inline-block;
+}
+
+textarea {
+            width: 100%;
+            resize: vertical; /* Allow vertical resizing only */
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+  </style>
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+      <ul>
+        <li><a href="#" onclick="showContent(1)">Item 1</a></li>
+        <li><a href="#" onclick="showContent(2)">Item 2</a></li>
+        <li><a href="#" onclick="showContent(3)">Item 3</a></li>
+        <li><a href="#" onclick="showContent(4)">Item 4</a></li>
+        <li><a href="#" onclick="showContent(5)">Item 5</a></li>
+        <li><a href="#" onclick="showContent(6)">Item 6</a></li>
+        <li><a href="./Pending Evaluation.html">Pending Evaluation</a></li>
+        <li><a href="./Successful Evaluation.html">Successful Evaluation</a></li>
+      </ul>
+    </div>
+  <div class="content">
+    <button class="toggle-btn" onclick="toggleSidebar()">Hide</button>
+    <div class="item-content" id="item-content-1">
+      <h2>Child Information Form</h2>
+      <form>
+        <div class="form-group" style="display: flex; justify-content: space-between;">
+            <div>
+                <label for="ID">ID:</label>
+            </div>
+            <div>
+                <label for="date">Date:</label>
+                <input type="text" id="date" name="date" placeholder="Date" style="width: 100px;">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="child-last-name">Child's Last Name:</label>
+            <input type="text" id="child-last-name" name="childNameLast" placeholder="Last" style="width: 100px;">
+            <input type="text" id="child-first-name" name="childNameFirst" placeholder="First" style="width: 100px; margin-left: 10px;">
+            <input type="text" id="child-middle-name" name="childNameMiddle" placeholder="Middle" style="width: 100px; margin-left: 10px;">
+            <input type="text" id="child-nickname" name="childNickname" placeholder="Nickname" style="width: 100px; margin-left: 10px;">
+          </div>
+          <div class="form-group">
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" style="width: 100%;">
+          </div>
+          <div style="display: flex; justify-content: space-between; padding: 20px;">
+            <div class="form-group" style="flex: 1; margin-right: 20px;">
+              <label for="age" style="margin-right: 10px;">Age:</label>
+              <input type="text" id="age" name="age" style="padding: 8px; border: 1px solid #ccc; border-radius: 5px; width: 100%;">
+            </div>
+            
+            <div class="form-group" style="flex: 1; margin-right: 20px;">
+              <label for="dob" style="margin-right: 10px;">Date of Birth:</label>
+              <input type="date" id="dob" name="dob" style="padding: 8px; border: 1px solid #ccc; border-radius: 5px; width: 100%;">
+            </div>
+            
+            <div class="form-group" style="flex: 1;">
+              <label for="sex" style="margin-right: 10px;">Sex:</label>
+              <select id="sex" name="sex" style="padding: 8px; border: 1px solid #ccc; border-radius: 5px; width: 100%;">
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+              </select>
+            </div>
+          </div>
+          
+        <div class="form-group">
+          <label for="mother-name">Mother's Name:</label>
+          <input type="text" id="mother-name" name="motherName">
+        </div>
+        <div class="form-group">
+          <label for="mother-telephone-home">Mother's Telephone (Home):</label>
+          <input type="text" id="mother-telephone-home" name="motherTelephoneHome">
+        </div>
+        <div class="form-group">
+          <label for="mother-telephone-work">Mother's Telephone (Work):</label>
+          <input type="text" id="mother-telephone-work" name="motherTelephoneWork">
+        </div>
+        <div class="form-group" style="margin-bottom: 20px;">
+            <label for="mother-address" style="display: block; margin-bottom: 5px; font-weight: bold;">Mother's Address (if different from child):</label>
+            <input type="text" id="mother-address" name="motherAddress" style="width: calc(100% - 20px); padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+          </div>
+        <div class="form-group">
+          <label for="mother-occupation">Mother's Occupation:</label>
+          <input type="text" id="mother-occupation" name="motherOccupation">
+        </div>
+        <div class="form-group">
+          <label for="mother-education">Mother's Education:</label>
+          <input type="text" id="mother-education" name="motherEducation">
+        </div>
+        <div class="form-group">
+          <label for="mother-first-language">Mother's First Language:</label>
+          <input type="text" id="mother-first-language" name="motherFirstLanguage">
+        </div>
+        <div class="form-group">
+          <label for="mother-other-languages">Other languages spoken by Mother:</label>
+          <input type="text" id="mother-other-languages" name="motherOtherLanguages">
+        </div>
+        <div class="form-group">
+          <label for="father-name">Father's Name:</label>
+          <input type="text" id="father-name" name="fatherName">
+        </div>
+        <div class="form-group">
+          <label for="father-telephone-home">Father's Telephone (Home):</label>
+          <input type="text" id="father-telephone-home" name="fatherTelephoneHome">
+        </div>
+        <div class="form-group">
+          <label for="father-telephone-work">Father's Telephone (Work):</label>
+          <input type="text" id="father-telephone-work" name="fatherTelephoneWork">
+        </div>
+        <div class="form-group" style="margin-bottom: 20px;">
+            <label for="father-address" style="display: block; margin-bottom: 5px; font-weight: bold;">Father's Address (if different from child):</label>
+            <input type="text" id="father-address" name="fatherAddress" style="width: calc(100% - 20px); padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+          </div>
+        <div class="form-group">
+          <label for="father-occupation">Father's Occupation:</label>
+          <input type="text" id="father-occupation" name="fatherOccupation">
+        </div>
+        <div class="form-group">
+          <label for="father-education">Father's Education:</label>
+          <input type="text" id="father-education" name="fatherEducation">
+        </div>
+        <div class="form-group">
+          <label for="father-first-language">Father's First Language:</label>
+          <input type="text" id="father-first-language" name="fatherFirstLanguage">
+        </div>
+        <div class="form-group">
+          <label for="father-other-languages">Other languages spoken by Father:</label>
+          <input type="text" id="father-other-languages" name="fatherOtherLanguages">
+        </div>
+        <div class="form-group">
+          <label for="child-lives-with">Child lives with:</label>
+          <input type="text" id="child-lives-with" name="childLivesWith">
+        </div>
+        <div class="form-group">
+          <label for="relationship">Relationship:</label>
+          <input type="text" id="relationship" name="relationship">
+        </div>
+        <div class="form-group">
+          <label for="persons-in-household">Number of persons in household:</label>
+          <input type="text" id="persons-in-household" name="personsInHousehold">
+        </div>
+        <div class="form-group">
+          <label for="form-completed-by">Person completing this form:</label>
+          <input type="text" id="form-completed-by" name="formCompletedBy">
+        </div>
+        <div class="form-group">
+          <label for="referred-by">Referred by:</label>
+          <input type="text" id="referred-by" name="referredBy">
+        </div>
+        <div class="form-group">
+          <label for="physician-name">Child's Physician:</label>
+          <input type="text" id="physician-name" name="physicianName">
+        </div>
+        <div class="form-group">
+          <label for="physician-telephone">Physician's Telephone:</label>
+          <input type="text" id="physician-telephone" name="physicianTelephone">
+        </div>
+        <div class="form-group" style="margin-bottom: 20px;">
+            <label for="physician-address" style="display: block; margin-bottom: 5px; font-weight: bold;">Physician's Address:</label>
+            <input type="text" id="physician-address" name="physicianAddress" style="width: calc(100% - 20px); padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+          </div>
+        <div class="form-group">
+          <label for="dentist-name">Child's Dentist:</label>
+          <input type="text" id="dentist-name" name="dentistName">
+        </div>
+        <div class="form-group">
+          <label for="dentist-telephone">Dentist's Telephone:</label>
+          <input type="text" id="dentist-telephone" name="dentistTelephone">
+        </div>
+        <div class="form-group" style="margin-bottom: 20px;">
+            <label for="dentist-address" style="display: block; margin-bottom: 5px; font-weight: bold;">Dentist's Address:</label>
+            <input type="text" id="dentist-address" name="dentistAddress" style="width: calc(100% - 20px); padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+          </div>
+          <div class="form-group" style="margin-bottom: 20px;">
+            <label for="problem-description" style="display: block; margin-bottom: 5px; font-weight: bold;">Description of problem:</label>
+            <textarea id="problem-description" name="problemDescription" rows="5" style="width: 400px; min-height: 100px; padding: 8px; border: 1px solid #ccc; border-radius: 5px; resize: vertical;"></textarea>
+          </div>
+          
+          <div class="form-group" style="margin-bottom: 20px;">
+            <label for="speech-therapy" style="display: block; margin-bottom: 5px; font-weight: bold;">Has the child ever received speech therapy? When? Where? What results?</label>
+            <textarea id="speech-therapy" name="speechTherapy" rows="5" style="width: 400px; min-height: 100px; padding: 8px; border: 1px solid #ccc; border-radius: 5px; resize: vertical;"></textarea>
+          </div>
+          <div class="next-btn-container">
+            
+            <button type="button" class="next-btn" onclick="next()"><img src="./Images/next.png" alt="Next"><span class="subtitle">Next</span></button>
+            <button type="button" class="next-btn" onclick="saveFormData(1)"><img src="./Images/save.png" alt="Save"><span class="subtitle">Save</span></button>
+          </div>
+      </form>    
+    </div>
+
+
+<!-------------------------------------------------------------------------------------------------------------------------->
+
+
+<div class="item-content" id="item-content-2">
+    <h2>Content 2</h2>
+    <p>List other agencies, psychologists, audiologists, occupational therapists, physical therapists, or physicians who have evaluated and/or treated the child.</p>
+    
+    <div>
+        <p><strong>Name Date(s) Findings/Treatment</strong></p>
+        <textarea rows="10" style="width: 100%;"></textarea>
+    </div>
+    <div>
+        <p><strong>MEDICAL HISTORY:</strong></p>
+        <p>Condition of mother during pregnancy:</p>
+        <p>Serious illnesses: <input type="text"> When: <input type="text"></p>
+        <p>Length of pregnancy: <input type="text"></p>
+        <p>RH blood factors of Father: <input type="text"> Mother: <input type="text"></p>
+        <p>Prolonged emotional stress: <input type="text"></p>
+        <p>Medications taken: <input type="text"></p>
+        <p>In Vitro Fertilization or Fertility Drugs?: <input type="text"></p>
+        <p>Other unusual conditions: <input type="text"></p>
+        <!-- Add more fields as needed -->
+    </div>
+    <div>
+        <p><strong>Conditions during and following birth:</strong></p>
+        <p>Place of birth: <input type="text"></p>
+        <p>Duration of labor: <input type="text"> Birth weight: <input type="text"></p>
+        <p>Type of delivery: <input type="text"> Instruments used: <input type="text"></p>
+        <p>Any injuries, bruises, deformity of head: <input type="text"></p>
+        <p>Breathing difficulties: <input type="text"> Feeding difficulties: <input type="text"></p>
+        <p>In incubator or ICU isolation: <input type="text"> Jaundice or Anoxia: <input type="text"></p>
+        <p>Other unusual conditions: <input type="text"></p>
+        <!-- Add more fields as needed -->
+    </div>
+    <div>
+        <p><strong>HISTORY OF CHILDHOOD ILLNESS:</strong></p>
+        <p>Measles: <input type="text"> Asthma: <input type="text"></p>
+        <p>Mumps: <input type="text"> Allergies: <input type="text"></p>
+        <p>Scarlet Fever: <input type="text"> Diabetes: <input type="text"></p>
+        <p>Pneumonia: <input type="text"> Epilepsy: <input type="text"></p>
+        <p>High Fevers: <input type="text"> Meningitis: <input type="text"></p>
+        <p>Chronic Colds: <input type="text"> Encephalitis: <input type="text"></p>
+        <!-- Add more fields as needed -->
+    </div>
+    <div>
+        <p><strong>EAR PROBLEMS:</strong></p>
+        <p>How many: <input type="text"> Right Ear: <input type="text"> Left Ear: <input type="text"></p>
+        <p>When: <input type="text"> Treatment: <input type="text"></p>
+        <p>Complaints of pain, itching in ear? Yes <input type="radio" name="ear-complaints"> No <input type="radio" name="ear-complaints"></p>
+        <p>Discharge from ear? Yes <input type="radio" name="ear-discharge"> No <input type="radio" name="ear-discharge"></p>
+        <p>Hearing fluctuations (Describe): <input type="text"></p>
+        <p>Tubes in ears? Yes <input type="radio" name="tubes"> No <input type="radio" name="tubes"> When? <input type="text"> Which ear? <input type="text"></p>
+        <!-- Add more fields as needed -->
+    </div>
+    <div class="next-btn-container">
+        <button type="button" class="next-btn" onclick="previous()"><img src="./Images/Previous.png" alt="Previous"><span class="subtitle">Previous</span></button>  
+        <button type="button" class="next-btn" onclick="next()"><img src="./Images/next.png" alt="Next"><span class="subtitle">Next</span></button>
+        <button type="button" class="next-btn" onclick="saveFormData(2)"><img src="./Images/save.png" alt="Save"><span class="subtitle">Save</span></button>
+    </div>
+
+</div>  
+
+<!-------------------------------------------------------------------------------------------------------------------------->
+
+
+<div class="item-content" id="item-content-3">
+    <h2>Content 3</h2>
+    
+    <div class="form-group">
+        <label for="hospitalizations">HOSPITALIZATIONS:</label>
+        <textarea id="hospitalizations" rows="10" style="width: 100%;"></textarea>
+        <p>Reason: <input type="text"> Age: <input type="text"> 
+    </div>
+    <div class="form-group">
+        <label for="current-medical-problems">CURRENT MEDICAL PROBLEMS:</label>
+        <textarea id="current-medical-problems" rows="5" style="width: 100%;"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="medication">Is the child taking any medication now?</label>
+        <input type="text" id="medication">
+    </div>
+    <div class="form-group">
+        <label for="medication-details">If so, what medication, how often, and for what condition?</label>
+        <textarea id="medication-details" rows="5" style="width: 100%;"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="accidents-injuries">ACCIDENTS OR INJURIES:</label>
+        <textarea id="accidents-injuries" rows="5" style="width: 100%;"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="family-history">FAMILY HISTORY:</label>
+        <p>Give a brief description of health (illnesses/injuries, speech and/or hearing problems, learning disabilities):</p>
+        <p>Father: <input type="text"></p>
+        <p>Mother: <input type="text"></p>
+    </div>
+
+
+    <!---=--------Floating window   ------------------------------------------------------------------------------------------------------>
+     
+
+    <style>
+       .sibling-window {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border: 1px solid #ccc;
+        z-index: 9999;
+        width: 100%; /* Adjust width */
+        height: 100%; /* Adjust height */
+        max-width: 800px; /* Maximum width */
+        max-height: 600px; /* Maximum height */
+        overflow-y: auto;
+        border-radius: 12px; /* Rounded corners */
+    }
+
+#sibling-info-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#sibling-info-table th,
+#sibling-info-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
+#sibling-info-table th {
+    background-color: #f2f2f2;
+    text-align: left;
+}
+
+#sibling-info-table td {
+    text-align: left;
+}
+/*button style*/
+.button-style {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 10px 24px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        border-radius: 12px; /* Rounded corners */
+    }
+
+    .button-style:hover {
+        background-color: #45a049;
+        color: white;
+    }
+
+    </style>
+
+
+
+<div class="form-group">
+    <label for="siblings">BROTHERS AND SISTERS OF CHILD:</label>
+    <div id="siblings-container">
+        <div class="sibling-info">
+            <label>Name:</label>
+            <input type="text" class="sibling-name">
+            <label>Age:</label>
+            <input type="text" class="sibling-age">
+            <label>School grade completed:</label>
+            <input type="text" class="sibling-grade">
+            <label>Any problems (medical/learning):</label>
+            <input type="text" class="sibling-problems">
+            <label>Actions</label>
+        </div>
+    </div>
+    <button type="button" class="button-style" onclick="addSibling()">Add Sibling</button>
+    <button type="button" class="button-style" onclick="openSiblingWindow()">View Siblings</button>
+</div>
+    
+    <!-- The sibling floating window -->
+<div id="sibling-window" class="floating-window" style="display: none;">
+    <div class="floating-header">
+        <span class="close" onclick="closeSiblingWindow()">&times;</span>
+        <h2>Siblings Information</h2>
+    </div>
+    <div class="floating-content">
+        <table id="sibling-info-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>School Grade Completed</th>
+                    <th>Any Problems (Medical/Learning)</th>
+                    <th>Actions</th> <!-- Added title for actions -->
+                </tr>
+            </thead>
+            <tbody id="sibling-info-list"></tbody>
+        </table>
+    </div>
+</div>
+
+
+
+      <!---=----------------------------------------------------------------------------------------------------------->
+
+
+    <div class="form-group">
+        <label for="relatives">List any illnesses/injuries, speech and hearing problems, or learning disabilities of other relatives, or others living in the household:</label>
+        <div id="relatives-container">
+            <div class="relative-info">
+                <label>Name:</label>
+                <input type="text" class="relative-name">
+                <label>Relationship:</label>
+                <input type="text" class="relative-relationship">
+                <label>Description of difficulty:</label>
+                <input type="text" class="relative-difficulty">
+            </div>
+        </div>
+        <button type="button" class="button-style" onclick="addSibling()">Add Relative</button>
+    <button type="button" class="button-style" onclick="openSiblingWindow()">View Relative</button>
+    </div>
+    <div id="relative-window" class="relative-window" style="display: none;">
+    <div class="floating-header">
+        <span class="close" onclick="closeRelativeWindow()">&times;</span>
+        <h2>Relatives Information</h2>
+    </div>
+    <div class="floating-content">
+        <div class="relative-info">
+            <label>Name:</label>
+            <input type="text" id="relative-name">
+            <label>Relationship:</label>
+            <input type="text" id="relative-relationship">
+            <label>Description of Difficulty:</label>
+            <textarea id="relative-difficulty"></textarea>
+        </div>
+        <button type="button" class="button-style" onclick="addRelative()">Save Relative</button>
+    </div>
+</div>
+    <div class="next-btn-container">
+        <button type="button" class="next-btn" onclick="previous()"><img src="./Images/Previous.png" alt="Previous"><span class="subtitle">Previous</span></button>  
+        <button type="button" class="next-btn" onclick="next()"><img src="./Images/next.png" alt="Next"><span class="subtitle">Next</span></button>
+        <button type="button" class="next-btn" onclick="saveFormData(1)"><img src="./Images/save.png" alt="Save"><span class="subtitle">Save</span></button>
+        
+    </div>
+  </div>
+
+
+<!-------------------------------------------------------------------------------------------------------------------------->
+
+
+<div class="item-content" id="item-content-4">
+    <h2>Content 4</h2>
+    <div class="form-group">
+        <label for="language-spoken">Does anyone in the family speak any language other than English?</label>
+        <label><input type="radio" name="language-spoken" value="yes"> Yes</label>
+        <label><input type="radio" name="language-spoken" value="no"> No</label>
+        <br>
+        <label for="spoken-language">If yes, what language is spoken and by whom?</label>
+        <textarea id="spoken-language" rows="3"></textarea>
+        <br>
+        <label for="understand-language">Does the child understand or speak this language?</label>
+        <label><input type="radio" name="understand-language" value="yes"> Yes</label>
+        <label><input type="radio" name="understand-language" value="no"> No</label>
+    </div>
+
+    <div class="form-group">
+        <label for="developmental-history">DEVELOPMENTAL AND SOCIAL HISTORY:</label>
+        <br>
+        <label>At what age did the child:</label>
+        <label>Sit alone: <input type="text" name="age-sit-alone"></label>
+        <label>Walk alone: <input type="text" name="age-walk-alone"></label>
+        <label>Begin self-feeding: <input type="text" name="age-self-feeding"></label>
+        <label>Toilet train: <input type="text" name="age-toilet-train"></label>
+        <br>
+        <label for="physical-disabilities">Does the child have any physical disabilities or impairments?</label>
+        <textarea id="physical-disabilities" rows="3"></textarea>
+        <br>
+        <label for="managing-problems">Are there any problems managing the child?</label>
+        <textarea id="managing-problems" rows="3"></textarea>
+        <br>
+        <label for="play-with-children">Does the child play with other children?</label>
+        <textarea id="play-with-children" rows="3"></textarea>
+        <br>
+        <label for="food-sensitivities">Does the child have any food sensitivities, food preferences, food allergies, or restrictions?</label>
+        <textarea id="food-sensitivities" rows="3"></textarea>
+        <br>
+        <label for="play-behavior">Describe play behavior (age of friends, types of play, etc.):</label>
+        <textarea id="play-behavior" rows="3"></textarea>
+        <br>
+        <label for="personality">Briefly describe the child’s personality:</label>
+        <textarea id="personality" rows="3"></textarea>
+        <br>
+        <label for="unusual-behavior">Any unusual behavior:</label>
+        <br>
+        <label>Overactive for age: <input type="text" name="overactive"></label>
+        <label>Highly distractible: <input type="text" name="distractible"></label>
+        <label>Bedwetting: <input type="text" name="bedwetting"></label>
+        <label>Restless Sleep: <input type="text" name="restless-sleep"></label>
+        <label>Rocking, staring, banging head, other: <input type="text" name="other-behavior"></label>
+        <br>
+        <label>How would you rate the child’s learning ability? <input type="text" name="learning-ability"></label>
+        <br>
+        <label>What are the child’s special interests or hobbies? <input type="text" name="special-interests"></label>
+    </div>
+    <div class="next-btn-container">
+        <button type="button" class="next-btn" onclick="previous()"><img src="./Images/Previous.png" alt="Previous"><span class="subtitle">Previous</span></button>  
+        <button type="button" class="next-btn" onclick="next()"><img src="./Images/next.png" alt="Next"><span class="subtitle">Next</span></button>
+        <button type="button" class="next-btn" onclick="saveFormData(1)"><img src="./Images/save.png" alt="Save"><span class="subtitle">Save</span></button>
+        
+    </div>
+  </div>
+
+
+<!-------------------------------------------------------------------------------------------------------------------------->
+
+
+<div class="item-content" id="item-content-5">
+    <h2>Content 5</h2>
+    <div class="form-group">
+        <label for="use-gestures">Do you use gestures to make the child understand?</label>
+        <textarea id="use-gestures" rows="3"></textarea>
+        <br>
+        <label>Does the child:</label>
+        <br>
+        <label>Use incorrect sounds in words: <input type="text" name="incorrect-sounds"></label>
+        <label>Use incorrect words: <input type="text" name="incorrect-words"></label>
+        <label>Leave out words: <input type="text" name="leave-out-words"></label>
+        <label>Talk too fast: <input type="text" name="talk-too-fast"></label>
+        <label>Stutter: <input type="text" name="stutter"></label>
+        <label>Use no speech at all: <input type="text" name="no-speech"></label>
+        <label>Have unusual voice quality: <input type="text" name="unusual-voice"></label>
+        <label>Depend mainly on signs and gestures instead of speech: <input type="text" name="signs-and-gestures"></label>
+        <label>Other (explain): <textarea id="other-speech-problems" rows="3"></textarea></label>
+    </div>
+
+    <div class="form-group">
+        <label for="learned-to-talk">DEVELOPMENTAL AND SOCIAL HISTORY:</label>
+        <br>
+        <label>Did the child ever learn to talk and then stop talking?</label>
+        <textarea id="learned-to-talk" rows="3"></textarea>
+        <br>
+        <label>Describe what happened:</label>
+        <textarea id="describe-what-happened" rows="3"></textarea>
+        <br>
+        <label>What, if anything, has been done about the child’s speech up to now and with what results?</label>
+        <textarea id="speech-intervention" rows="3"></textarea>
+        <br>
+        <label>Are there any problems with:</label>
+        <br>
+        <label>Teeth: <input type="text" name="teeth"></label>
+        <label>Palate: <input type="text" name="palate"></label>
+        <label>Throat: <input type="text" name="throat"></label>
+        <label>Tongue: <input type="text" name="tongue"></label>
+        <label>Other: <input type="text" name="other-problems"></label>
+        <br>
+        <label>What do you think might be the cause of the child’s speech/language problem?</label>
+        <textarea id="cause-of-problem" rows="3"></textarea>
+        <br>
+        <label>Is the child aware of the speech/language problem?</label>
+        <label><input type="radio" name="awareness" value="yes"> Yes</label>
+        <label><input type="radio" name="awareness" value="no"> No</label>
+    </div>
+
+    <div class="form-group">
+        <label for="hearing-well">HEARING HISTORY:</label>
+        <br>
+        <label>Do you think the child hears well?</label>
+        <textarea id="hearing-well" rows="3"></textarea>
+        <br>
+        <label>If not, when was the problem first noticed?</label>
+        <textarea id="hearing-problem-notice" rows="3"></textarea>
+        <br>
+        <label>Has the child’s hearing become worse?</label>
+        <textarea id="hearing-worse" rows="3"></textarea>
+        <br>
+        <label>If so, over what period of time?</label>
+        <textarea id="hearing-worse-time" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>HEARING HISTORY, CONTINUED:</label>
+        <br>
+        <label>Does the child seem to hear better at certain times than others?</label>
+        <textarea id="better-at-certain-times" rows="3"></textarea>
+        <br>
+        <label>If so, when?</label>
+        <textarea id="better-times" rows="3"></textarea>
+        <br>
+        <label>Does the child seem to hear better in one ear than the other?</label>
+        <textarea id="better-in-one-ear" rows="3"></textarea>
+        <br>
+        <label>Which ear seems better?</label>
+        <textarea id="better-ear" rows="3"></textarea>
+        <br>
+        <label>Has the child’s hearing ever been tested before?</label>
+        <textarea id="tested-before" rows="3"></textarea>
+        <br>
+        <label>Where?</label>
+        <textarea id="tested-where" rows="3"></textarea>
+        <br>
+        <label>Results:</label>
+        <textarea id="hearing-test-results" rows="3"></textarea>
+        <br>
+        <label>Has the child received medical treatment for ear/s or hearing problem?</label>
+        <textarea id="medical-treatment" rows="3"></textarea>
+        <br>
+        <label>If so, when?</label>
+        <textarea id="treatment-when" rows="3"></textarea>
+        <br>
+        <label>Doctor’s name and address:</label>
+        <textarea id="doctor-info" rows="3"></textarea>
+        <br>
+        <label>Doctor’s finding and treatment:</label>
+        <textarea id="doctor-treatment" rows="3"></textarea>
+        <br>
+        <label>Does the child have to watch your face to understand you?</label>
+        <label><input type="radio" name="watch-face" value="yes"> Yes</label>
+        <label><input type="radio" name="watch-face" value="no"> No</label>
+        <br>
+        <label>Does the child respond to:</label>
+        <br>
+        <label>Own name: <input type="text" name="own-name"></label>
+        <label>Vibrations: <input type="text" name="vibrations"></label>
+        <label>Soft speech and noises: <input type="text" name="soft-speech"></label>
+        <label>Gestures: <input type="text" name="gestures"></label>
+        <label>Verbal commands: <input type="text" name="verbal-commands"></label>
+        <label>Loud noises only: <input type="text" name="loud-noises"></label>
+        <br>
+        <label>Does the child appear alarmed or annoyed by loud sounds?</label>
+        <textarea id="alarmed-by-loud-sounds" rows="3"></textarea>
+        <br>
+        <label>Does the child seem to ignore sounds?</label>
+        <textarea id="ignore-sounds" rows="3"></textarea>
+        <br>
+        <label>Has the child ever worn a hearing aid?</label>
+        <textarea id="worn-hearing-aid" rows="3"></textarea>
+        <br>
+        <label>Brand:</label>
+        <input type="text" name="hearing-aid-brand">
+        <br>
+        <label>Which ear:</label>
+        <input type="text" name="hearing-aid-ear">
+    </div>
+    <div class="next-btn-container">
+        <button type="button" class="next-btn" onclick="previous()"><img src="./Images/Previous.png" alt="Previous"><span class="subtitle">Previous</span></button>  
+        <button type="button" class="next-btn" onclick="next()"><img src="./Images/next.png" alt="Next"><span class="subtitle">Next</span></button>
+        <button type="button" class="next-btn" onclick="saveFormData(1)"><img src="./Images/save.png" alt="Save"><span class="subtitle">Save</span></button>
+        
+    </div>
+  </div>
+
+
+<!-------------------------------------------------------------------------------------------------------------------------->
+
+<style>
+    #educational-history-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    #educational-history-table th,
+    #educational-history-table td {
+        padding: 8px;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+
+    #educational-history-table input[type="text"] {
+        width: 100%;
+        box-sizing: border-box;
+    }
+</style>
+
+<div class="item-content" id="item-content-6">
+    <h2>Content 6</h2>
+    <div class="form-group">
+        <label for="vision-history">VISION HISTORY:</label>
+        <br>
+        <label>Do you think the child sees well?</label>
+        <textarea id="vision-well" rows="3"></textarea>
+        <br>
+        <label>Has the child’s vision ever been tested?</label>
+        <textarea id="vision-tested" rows="3"></textarea>
+        <br>
+        <label>If so, what were the results?</label>
+        <textarea id="vision-results" rows="3"></textarea>
+        <br>
+        <label>Does the child wear glasses or contact lenses?</label>
+        <textarea id="glasses-contact-lenses" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="educational-history">EDUCATIONAL HISTORY:</label>
+        <br>
+        <table id="educational-history-table">
+            <thead>
+                <tr>
+                    <th>School</th>
+                    <th>Teacher's Name</th>
+                    <th>Year</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" name="school1"></td>
+                    <td><input type="text" name="teacher1"></td>
+                    <td><input type="text" name="year1"></td>
+                    <td><input type="text" name="grade1"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="school2"></td>
+                    <td><input type="text" name="teacher2"></td>
+                    <td><input type="text" name="year2"></td>
+                    <td><input type="text" name="grade2"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="school3"></td>
+                    <td><input type="text" name="teacher3"></td>
+                    <td><input type="text" name="year3"></td>
+                    <td><input type="text" name="grade3"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="school4"></td>
+                    <td><input type="text" name="teacher4"></td>
+                    <td><input type="text" name="year4"></td>
+                    <td><input type="text" name="grade4"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="school5"></td>
+                    <td><input type="text" name="teacher5"></td>
+                    <td><input type="text" name="year5"></td>
+                    <td><input type="text" name="grade5"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="form-group">
+        <label>EDUCATIONAL HISTORY, CONTINUED:</label>
+        <br>
+        <label>Has the child ever repeated a grade?</label>
+        <textarea id="repeat-grade" rows="3"></textarea>
+        <br>
+        <label>How is the child doing academically?</label>
+        <textarea id="academic-performance" rows="3"></textarea>
+        <br>
+        <label>In what areas, if any, is the child having difficulty?</label>
+        <textarea id="academic-difficulty" rows="3"></textarea>
+        <br>
+        <label>Has the child ever received any special services in school?</label>
+        <textarea id="special-services" rows="3"></textarea>
+        <br>
+        <label>If so, when?</label>
+        <input type="text" name="special-services-when">
+        <br>
+        <label>If so, what?</label>
+        <textarea id="special-services-what" rows="3"></textarea>
+        <br>
+        <label>Has the child had any intelligence tests?</label>
+        <textarea id="intelligence-tests" rows="3"></textarea>
+        <br>
+        <label>If so, when?</label>
+        <input type="text" name="intelligence-tests-when">
+        <br>
+        <label>By whom?</label>
+        <input type="text" name="intelligence-tests-by">
+        <br>
+        <label>Results:</label>
+        <textarea id="intelligence-test-results" rows="3"></textarea>
+        <br>
+        <label>Does the child enjoy going to school?</label>
+        <textarea id="enjoy-school" rows="3"></textarea>
+        <br>
+        <label>If not, please explain why:</label>
+        <textarea id="school-explanation" rows="3"></textarea>
+        <br>
+        <label>What subjects does the child enjoy most?</label>
+        <textarea id="favorite-subjects" rows="3"></textarea>
+        <br>
+        <label>The least?</label>
+        <textarea id="least-favorite-subjects" rows="3"></textarea>
+        <br>
+        <label>Is there anything else we should know about your child?</label>
+        <textarea id="additional-info" rows="5"></textarea>
+    </div>
+    <div class="next-btn-container">
+        <button type="button" class="next-btn" onclick="previous()"><img src="./Images/Previous.png" alt="Previous"><span class="subtitle">Previous</span></button>  
+        
+        <button type="button" class="next-btn" onclick="saveFormData(1)"><img src="./Images/save.png" alt="Save"><span class="subtitle">Complete</span></button>
+        
+    </div>
+  </div>
+
+
+
+<!-------------------------------------------------------------------------------------------------------------------------->
+
+
+
+
+
+
+
+
+  </div>
+
+  <script>
+  function openSiblingWindow() {
+    var siblingWindow = document.getElementById('sibling-window');
+    siblingWindow.style.display = 'block';
+
+    var siblingsContainer = document.getElementById('siblings-container');
+    var siblingsInfo = siblingsContainer.querySelectorAll('.sibling-info');
+
+    var siblingInfoList = document.getElementById('sibling-info-list');
+    siblingInfoList.innerHTML = '';
+
+    siblingsInfo.forEach(function(info, index) {
+        var name = info.querySelector('.sibling-name').value;
+        var age = info.querySelector('.sibling-age').value;
+        var grade = info.querySelector('.sibling-grade').value;
+        var problems = info.querySelector('.sibling-problems').value;
+
+        var row = siblingInfoList.insertRow();
+        var nameCell = row.insertCell(0);
+        var ageCell = row.insertCell(1);
+        var gradeCell = row.insertCell(2);
+        var problemsCell = row.insertCell(3);
+        var actionsCell = row.insertCell(4); // Added actions cell
+
+        nameCell.innerHTML = name;
+        ageCell.innerHTML = age;
+        gradeCell.innerHTML = grade;
+        problemsCell.innerHTML = problems;
+        actionsCell.innerHTML = `<button onclick="editSibling(${index})" title="Edit Sibling">Edit</button>
+                                <button onclick="editSibling(${index})" title="save Sibling">save</button>
+                                 <button onclick="deleteSibling(${index})" title="Delete Sibling">Delete</button>`;
+    });
+}
+
+function editSibling(index) {
+    var siblingInfoList = document.getElementById('sibling-info-list');
+    var row = siblingInfoList.rows[index]; // No need to add 1 since rows index starts from 0
+
+    var name = row.cells[0].innerHTML;
+    var age = row.cells[1].innerHTML;
+    var grade = row.cells[2].innerHTML;
+    var problems = row.cells[3].innerHTML;
+
+    var siblingsContainer = document.getElementById('siblings-container');
+    var siblingInfo = siblingsContainer.querySelectorAll('.sibling-info')[index];
+
+    siblingInfo.querySelector('.sibling-name').value = name;
+    siblingInfo.querySelector('.sibling-age').value = age;
+    siblingInfo.querySelector('.sibling-grade').value = grade;
+    siblingInfo.querySelector('.sibling-problems').value = problems;
+
+    deleteSibling(index);
+}
+
+function deleteSibling(index) {
+    var siblingInfoList = document.getElementById('sibling-info-list');
+    siblingInfoList.deleteRow(index);
+}
+
+function closeSiblingWindow() {
+    var siblingWindow = document.getElementById('sibling-window');
+    siblingWindow.style.display = 'none';
+}
+
+
+
+
+function closeSiblingWindow() {
+    var siblingWindow = document.getElementById('sibling-window');
+    siblingWindow.style.display = 'none';
+}
+
+
+
+
+    var currentItem = 1;
+
+    function toggleSidebar() {
+      var sidebar = document.getElementById('sidebar');
+      var content = document.querySelector('.content');
+  
+      if (sidebar.style.left === '0px') {
+        sidebar.style.left = '-250px';
+        content.style.marginLeft = '0';
+        document.querySelectorAll('.toggle-btn').forEach(btn => {
+          btn.textContent = 'Show';
+        });
+      } else {
+        sidebar.style.left = '0';
+        content.style.marginLeft = '250px';
+        document.querySelectorAll('.toggle-btn').forEach(btn => {
+          btn.textContent = 'Hide';
+        });
+      }
+    }
+  
+    function showContent(itemNumber) {
+      // Hide all item contents
+      document.querySelectorAll('.item-content').forEach(content => {
+        content.style.display = 'none';
+      });
+  
+      // Show the selected item content
+      var itemContent = document.getElementById('item-content-' + itemNumber);
+      if (itemContent) {
+        itemContent.style.display = 'block';
+      }
+  
+      currentItem = itemNumber;
+    }
+  
+    function next() {
+      if (currentItem < 6) {
+        showContent(currentItem + 1);
+      } else {
+        showContent(1);
+      }
+    }
+  
+    function previous() {
+      if (currentItem > 1) {
+        showContent(currentItem - 1);
+      } else {
+        showContent(6); // Loop back to the last item if at the first item
+      }
+    }
+  </script>
+  
+</body>
+</html>

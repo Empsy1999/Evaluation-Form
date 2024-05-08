@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sidebar Menu</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Bootstrap Datepicker CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 250px;
+      height: 100%;
+      background: #06789e;
+      color: #fff;
+      transition: left 0.3s ease;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar ul li {
+      padding: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    .sidebar ul li a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .sidebar ul li:hover {
+      background-color: #0c93c5;
+    }
+    .sidebar ul li.active {
+      background-color: #0c93c5;
+    }
+
+    .content {
+      margin-left: 250px; /* Adjusted to accommodate the sidebar */
+      transition: margin-left 0.3s ease;
+    }
+
+    .toggle-btn {
+      display: block;
+      margin: 10px;
+      padding: 5px;
+      background: #a29702;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    .item-content {
+      display: none;
+      padding: 20px;
+    }
+
+    .next-btn-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .next-btn {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .next-btn img {
+      width: 60px; /* Adjust icon size */
+      height: 60px; /* Adjust icon size */
+    }
+
+    .subtitle {
+      font-size: 12px;
+      color: #555;
+      margin-top: 5px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .search-top {
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .search-top {
+        margin-bottom: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar" id="sidebar">
+    <ul>
+      <li><a href="./index.html" onclick="showContent(1)">Item 1</a></li>
+      <li><a href="#" onclick="showContent(2)">Item 2</a></li>
+      <li><a href="#" onclick="showContent(3)">Item 3</a></li>
+      <li><a href="#" onclick="showContent(4)">Item 4</a></li>
+      <li><a href="#" onclick="showContent(5)">Item 5</a></li>
+      <li><a href="#" onclick="showContent(6)">Item 6</a></li>
+      <li><a href="./Pending Evaluation.html">Pending Evaluation</a></li>
+      <li><a href="./Successful Evaluation.html">Successful Evaluation</a></li>
+    </ul>
+  </div>
+  <div class="content">
+    <button class="toggle-btn" onclick="toggleSidebar()">Hide</button>
+    <div class="item-content" id="item-content-1"></div>
+    <div class="container mt-3">
+      <div class="table-container">
+        <h2>User Details</h2>
+        <div class="row justify-content-center">
+          <div class="col-md-3 form-group">
+            <label for="entries">Show entries:</label>
+            <select id="entries" class="form-control">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+            </select>
+          </div>
+          <div class="col-md-3 form-group">
+            <label for="order">Sort by:</label>
+            <select id="order" class="form-control">
+              <option value="asc">Ascending</option>
+              <option value="desc">Descending</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-6 form-group">
+                <label for="datepicker">Date:</label>
+                <input type="text" id="datepicker" class="form-control" placeholder="Select date range">
+              </div>
+              <div class="col-md-6">
+                <div class="input-group search-top">
+                  <input type="text" id="search-box" class="form-control" placeholder="Search">
+                  <div class="input-group-append">
+                    <button id="search-btn" class="btn btn-primary">Search</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive mt-3">
+          <table id="user-details-table" class="table table-bordered">
+            <thead class="thead-dark">
+              <tr>
+                <th>Name</th>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Evaluation Process Section</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Ruel Acejo</td>
+                <td>123456</td>
+                <td>Feb 13, 2024</td>
+                <td>Process Section 1</td>
+                <td>
+                  <button class="btn btn-primary">Continue</button>
+                  <button class="btn btn-danger">Delete</button>
+                </td>
+              </tr>
+              <tr>
+                <td>Marco Cuento</td>
+                <td>654321</td>
+                <td>Mar 12, 2024</td>
+                <td>Process Section 2</td>
+                <td>
+                  <button class="btn btn-primary">Continue</button>
+                  <button class="btn btn-danger">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Bootstrap Datepicker JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+  <!-- Datepicker initialization -->
+  <script>
+    $('#datepicker').datepicker({
+      format: 'mm/dd/yyyy',
+      autoclose: true,
+      todayHighlight: true
+    });
+  </script>
+  <script>
+    var currentItem = 1;
+
+    function toggleSidebar() {
+      var sidebar = document.getElementById('sidebar');
+      var content = document.querySelector('.content');
+
+      if (sidebar.style.left === '0px') {
+        sidebar.style.left = '-250px';
+        content.style.marginLeft = '0';
+        document.querySelectorAll('.toggle-btn').forEach(btn => {
+          btn.textContent = 'Show';
+        });
+      } else {
+        sidebar.style.left = '0';
+        content.style.marginLeft = '250px';
+        document.querySelectorAll('.toggle-btn').forEach(btn => {
+          btn.textContent = 'Hide';
+        });
+      }
+    }
+
+    function showContent(itemNumber) {
+      // Hide all item contents
+      document.querySelectorAll('.item-content').forEach(content => {
+        content.style.display = 'none';
+      });
+
+      // Show the selected item content
+      var itemContent = document.getElementById('item-content-' + itemNumber);
+      if (itemContent) {
+        itemContent.style.display = 'block';
+      }
+
+      currentItem = itemNumber;
+    }
+
+    function next() {
+      if (currentItem < 6) {
+        showContent(currentItem + 1);
+      } else {
+        showContent(1);
+      }
+    }
+
+    function previous() {
+      if (currentItem > 1) {
+        showContent(currentItem - 1);
+      } else {
+        showContent(6); // Loop back to the last item if at the first item
+      }
+    }
+  </script>
+
+</body>
+</html>
