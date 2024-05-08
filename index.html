@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sidebar Menu</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 250px;
+      height: 100%;
+      background: #06789e;
+      color: #fff;
+      transition: left 0.3s ease;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar ul li {
+      padding: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    .sidebar ul li a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .sidebar ul li:hover {
+      background-color: #0c93c5;
+    }
+
+    .content {
+      margin-left: 250px; /* Adjusted to accommodate the sidebar */
+      transition: margin-left 0.3s ease;
+    }
+
+    .toggle-btn {
+      display: block;
+      margin: 10px;
+      padding: 5px;
+      background: #a29702;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    .item-content {
+      display: none;
+      padding: 20px;
+    }
+
+    .next-btn {
+      display: block;
+      margin-top: 10px;
+      padding: 5px 10px;
+      background: #444;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+      <ul>
+        <li><a href="#" onclick="showContent(1)">Item 1</a></li>
+        <li><a href="#" onclick="showContent(2)">Item 2</a></li>
+        <li><a href="#" onclick="showContent(3)">Item 3</a></li>
+        <li><a href="#" onclick="showContent(4)">Item 4</a></li>
+        <li><a href="#" onclick="showContent(5)">Item 5</a></li>
+        <li><a href="#" onclick="showContent(6)">Item 6</a></li>
+        <li><a href="pending_evaluation.html">Pending Evaluation</a></li>
+        <li><a href="successful_evaluation.html">Successful Evaluation</a></li>
+      </ul>
+    </div>
+  <div class="content">
+    <button class="toggle-btn" onclick="toggleSidebar()">Hide</button>
+    <div class="item-content" id="item-content-1">
+      <h2>Child Information Form</h2>
+      <form>
+        <div class="form-group">
+          <label for="date">Date:</label>
+          <input type="text" id="date" name="date">
+        </div>
+        <div class="form-group">
+            <label for="child-last-name">Child's Last Name:</label>
+            <input type="text" id="child-last-name" name="childNameLast" placeholder="Last" style="width: 100px;">
+            <input type="text" id="child-first-name" name="childNameFirst" placeholder="First" style="width: 100px; margin-left: 10px;">
+            <input type="text" id="child-middle-name" name="childNameMiddle" placeholder="Middle" style="width: 100px; margin-left: 10px;">
+            <input type="text" id="child-nickname" name="childNickname" placeholder="Nickname" style="width: 100px; margin-left: 10px;">
+          </div>
+          <div class="form-group">
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" style="width: 100%;">
+          </div>
+          <div style="display: flex; justify-content: space-between; padding: 20px;">
+            <div class="form-group" style="flex: 1; margin-right: 20px;">
+              <label for="age" style="margin-right: 10px;">Age:</label>
+              <input type="text" id="age" name="age" style="padding: 8px; border: 1px solid #ccc; border-radius: 5px; width: 100%;">
+            </div>
+            
+            <div class="form-group" style="flex: 1; margin-right: 20px;">
+              <label for="dob" style="margin-right: 10px;">Date of Birth:</label>
+              <input type="date" id="dob" name="dob" style="padding: 8px; border: 1px solid #ccc; border-radius: 5px; width: 100%;">
+            </div>
+            
+            <div class="form-group" style="flex: 1;">
+              <label for="sex" style="margin-right: 10px;">Sex:</label>
+              <select id="sex" name="sex" style="padding: 8px; border: 1px solid #ccc; border-radius: 5px; width: 100%;">
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+              </select>
+            </div>
+          </div>
+          
+        <div class="form-group">
+          <label for="mother-name">Mother's Name:</label>
+          <input type="text" id="mother-name" name="motherName">
+        </div>
+        <div class="form-group">
+          <label for="mother-telephone-home">Mother's Telephone (Home):</label>
+          <input type="text" id="mother-telephone-home" name="motherTelephoneHome">
+        </div>
+        <div class="form-group">
+          <label for="mother-telephone-work">Mother's Telephone (Work):</label>
+          <input type="text" id="mother-telephone-work" name="motherTelephoneWork">
+        </div>
+        <div class="form-group" style="margin-bottom: 20px;">
+            <label for="mother-address" style="display: block; margin-bottom: 5px; font-weight: bold;">Mother's Address (if different from child):</label>
+            <input type="text" id="mother-address" name="motherAddress" style="width: calc(100% - 20px); padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+          </div>
+        <div class="form-group">
+          <label for="mother-occupation">Mother's Occupation:</label>
+          <input type="text" id="mother-occupation" name="motherOccupation">
+        </div>
+        <div class="form-group">
+          <label for="mother-education">Mother's Education:</label>
+          <input type="text" id="mother-education" name="motherEducation">
+        </div>
+        <div class="form-group">
+          <label for="mother-first-language">Mother's First Language:</label>
+          <input type="text" id="mother-first-language" name="motherFirstLanguage">
+        </div>
+        <div class="form-group">
+          <label for="mother-other-languages">Other languages spoken by Mother:</label>
+          <input type="text" id="mother-other-languages" name="motherOtherLanguages">
+        </div>
+        <div class="form-group">
+          <label for="father-name">Father's Name:</label>
+          <input type="text" id="father-name" name="fatherName">
+        </div>
+        <div class="form-group">
+          <label for="father-telephone-home">Father's Telephone (Home):</label>
+          <input type="text" id="father-telephone-home" name="fatherTelephoneHome">
+        </div>
+        <div class="form-group">
+          <label for="father-telephone-work">Father's Telephone (Work):</label>
+          <input type="text" id="father-telephone-work" name="fatherTelephoneWork">
+        </div>
+        <div class="form-group" style="margin-bottom: 20px;">
+            <label for="father-address" style="display: block; margin-bottom: 5px; font-weight: bold;">Father's Address (if different from child):</label>
+            <input type="text" id="father-address" name="fatherAddress" style="width: calc(100% - 20px); padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+          </div>
+        <div class="form-group">
+          <label for="father-occupation">Father's Occupation:</label>
+          <input type="text" id="father-occupation" name="fatherOccupation">
+        </div>
+        <div class="form-group">
+          <label for="father-education">Father's Education:</label>
+          <input type="text" id="father-education" name="fatherEducation">
+        </div>
+        <div class="form-group">
+          <label for="father-first-language">Father's First Language:</label>
+          <input type="text" id="father-first-language" name="fatherFirstLanguage">
+        </div>
+        <div class="form-group">
+          <label for="father-other-languages">Other languages spoken by Father:</label>
+          <input type="text" id="father-other-languages" name="fatherOtherLanguages">
+        </div>
+        <div class="form-group">
+          <label for="child-lives-with">Child lives with:</label>
+          <input type="text" id="child-lives-with" name="childLivesWith">
+        </div>
+        <div class="form-group">
+          <label for="relationship">Relationship:</label>
+          <input type="text" id="relationship" name="relationship">
+        </div>
+        <div class="form-group">
+          <label for="persons-in-household">Number of persons in household:</label>
+          <input type="text" id="persons-in-household" name="personsInHousehold">
+        </div>
+        <div class="form-group">
+          <label for="form-completed-by">Person completing this form:</label>
+          <input type="text" id="form-completed-by" name="formCompletedBy">
+        </div>
+        <div class="form-group">
+          <label for="referred-by">Referred by:</label>
+          <input type="text" id="referred-by" name="referredBy">
+        </div>
+        <div class="form-group">
+          <label for="physician-name">Child's Physician:</label>
+          <input type="text" id="physician-name" name="physicianName">
+        </div>
+        <div class="form-group">
+          <label for="physician-telephone">Physician's Telephone:</label>
+          <input type="text" id="physician-telephone" name="physicianTelephone">
+        </div>
+        <div class="form-group" style="margin-bottom: 20px;">
+            <label for="physician-address" style="display: block; margin-bottom: 5px; font-weight: bold;">Physician's Address:</label>
+            <input type="text" id="physician-address" name="physicianAddress" style="width: calc(100% - 20px); padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+          </div>
+        <div class="form-group">
+          <label for="dentist-name">Child's Dentist:</label>
+          <input type="text" id="dentist-name" name="dentistName">
+        </div>
+        <div class="form-group">
+          <label for="dentist-telephone">Dentist's Telephone:</label>
+          <input type="text" id="dentist-telephone" name="dentistTelephone">
+        </div>
+        <div class="form-group" style="margin-bottom: 20px;">
+            <label for="dentist-address" style="display: block; margin-bottom: 5px; font-weight: bold;">Dentist's Address:</label>
+            <input type="text" id="dentist-address" name="dentistAddress" style="width: calc(100% - 20px); padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+          </div>
+          <div class="form-group" style="margin-bottom: 20px;">
+            <label for="problem-description" style="display: block; margin-bottom: 5px; font-weight: bold;">Description of problem:</label>
+            <textarea id="problem-description" name="problemDescription" rows="5" style="width: 400px; min-height: 100px; padding: 8px; border: 1px solid #ccc; border-radius: 5px; resize: vertical;"></textarea>
+          </div>
+          
+          <div class="form-group" style="margin-bottom: 20px;">
+            <label for="speech-therapy" style="display: block; margin-bottom: 5px; font-weight: bold;">Has the child ever received speech therapy? When? Where? What results?</label>
+            <textarea id="speech-therapy" name="speechTherapy" rows="5" style="width: 400px; min-height: 100px; padding: 8px; border: 1px solid #ccc; border-radius: 5px; resize: vertical;"></textarea>
+          </div>
+        <button class="next-btn" onclick="next()">Next</button>
+      </form>    
+    </div>
+
+
+    <div class="item-content" id="item-content-2">
+        <h2>Content 2</h2>
+        <p>This is the content for item 2.</p>
+        <button class="next-btn" onclick="next()">Next</button>
+      </div>
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  <script>
+    var currentItem = 1;
+
+function toggleSidebar() {
+  var sidebar = document.getElementById('sidebar');
+  var content = document.querySelector('.content');
+
+  if (sidebar.style.left === '0px') {
+    sidebar.style.left = '-250px';
+    content.style.marginLeft = '0';
+    document.querySelectorAll('.toggle-btn').forEach(btn => {
+      btn.textContent = 'Show';
+    });
+  } else {
+    sidebar.style.left = '0';
+    content.style.marginLeft = '250px';
+    document.querySelectorAll('.toggle-btn').forEach(btn => {
+      btn.textContent = 'Hide';
+    });
+  }
+}
+
+function showContent(itemNumber) {
+  // Hide all item contents
+  document.querySelectorAll('.item-content').forEach(content => {
+    content.style.display = 'none';
+  });
+  // Show the selected item content
+  var itemContent = document.getElementById('item-content-' + itemNumber);
+  if (itemContent) {
+    itemContent.style.display = 'block';
+  }
+  currentItem = itemNumber;
+}
+
+function next() {
+  var nextItem = currentItem + 1;
+  var itemContent = document.getElementById('item-content-' + nextItem);
+  if (itemContent) {
+    showContent(nextItem);
+  } else {
+    // If there is no next item, loop back to the first item
+    showContent(1);
+  }
+}
+  </script>
+</body>
+</html>
