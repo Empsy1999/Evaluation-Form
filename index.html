@@ -170,6 +170,39 @@ textarea {
             overflow-y: auto; /* Enable vertical scrolling */
         }
 
+
+/*  mother & fathers form style */
+
+.form-mothers-container, .form-fathers-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px; /* Creates spacing between each form group */
+            box-sizing: border-box;
+            padding: 20px; /* Added padding for spacing */
+        }
+        .form-mothers-group, .form-fathers-group {
+            margin-bottom: 20px;
+        }
+        .form-mothers-left-column, .form-mothers-right-column,
+        .form-fathers-left-column, .form-fathers-right-column {
+            flex: 1;
+        }
+        .form-mothers-left-column .form-mothers-group,
+        .form-mothers-right-column .form-mothers-group,
+        .form-fathers-left-column .form-fathers-group,
+        .form-fathers-right-column .form-fathers-group {
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .form-mothers-full-width, .form-fathers-full-width {
+            width: 100%;
+        }
+        .form-mothers-header, .form-fathers-header {
+            width: 100%;
+        }
+
+/*  Child */
+
   </style>
 </head>
 <body>
@@ -181,8 +214,8 @@ textarea {
         <li><a href="#" onclick="showContent(4)">Item 4</a></li>
         <li><a href="#" onclick="showContent(5)">Item 5</a></li>
         <li><a href="#" onclick="showContent(6)">Item 6</a></li>
-        <li><a href="./Pages/Pending Evaluation.html">Pending Evaluation</a></li>
-        <li><a href="./Pages/Successful Evaluation.html">Successful Evaluation</a></li>
+        <li><a href="./Pending Evaluation.html">Pending Evaluation</a></li>
+        <li><a href="./Successful Evaluation.html">Successful Evaluation</a></li>
       </ul>
     </div>
   <div class="content">
@@ -229,115 +262,263 @@ textarea {
               </select>
             </div>
           </div>
+
+
+<!---------------------------------------------- Mothers Form------------------------------------------------------->
           
-        <div class="form-group">
-          <label for="mother-name">Mother's Name:</label>
-          <input type="text" id="mother-name" name="motherName">
+          <div class="form-mothers-container">
+            <div class="form-mothers-group form-mothers-header" id="form-group-mother-name">
+                <label for="mother-name">Mother's Name:</label>
+                <input type="text" id="mother-name" name="motherName" class="form-mothers-full-width">
+            </div>
+            <div class="form-mothers-left-column">
+                <div class="form-mothers-group" id="form-group-mother-telephone-home">
+                    <label for="mother-telephone-home">Mother's Telephone (Home):</label>
+                    <input type="text" id="mother-telephone-home" name="motherTelephoneHome">
+                </div>
+                <div class="form-mothers-group" id="form-group-mother-address">
+                    <label for="mother-address">Mother's Address (if different from child):</label>
+                    <input type="text" id="mother-address" name="motherAddress" class="form-mothers-full-width">
+                </div>
+                <div class="form-mothers-group" id="form-group-mother-occupation">
+                    <label for="mother-occupation">Mother's Occupation:</label>
+                    <input type="text" id="mother-occupation" name="motherOccupation">
+                </div>
+                <div class="form-mothers-group" id="form-group-mother-first-language">
+                    <label for="mother-first-language">Mother's First Language:</label>
+                    <input type="text" id="mother-first-language" name="motherFirstLanguage">
+                </div>
+            </div>
+            <div class="form-mothers-right-column">
+                <div class="form-mothers-group" id="form-group-mother-telephone-work">
+                    <label for="mother-telephone-work">Mother's Telephone (Work):</label>
+                    <input type="text" id="mother-telephone-work" name="motherTelephoneWork">
+                </div>
+                <div class="form-mothers-group" id="form-group-mother-education">
+                    <label for="mother-education">Mother's Education:</label>
+                    <input type="text" id="mother-education" name="motherEducation">
+                </div>
+                <div class="form-mothers-group" id="form-group-mother-education">
+                  <label for="mother-other-languages">Other languages spoken by Mather:</label>
+                  <input type="text" id="mother-other-languages" name="motherOtherLanguages">
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-          <label for="mother-telephone-home">Mother's Telephone (Home):</label>
-          <input type="text" id="mother-telephone-home" name="motherTelephoneHome">
-        </div>
-        <div class="form-group">
-          <label for="mother-telephone-work">Mother's Telephone (Work):</label>
-          <input type="text" id="mother-telephone-work" name="motherTelephoneWork">
-        </div>
-        <div class="form-group" style="margin-bottom: 20px;">
-            <label for="mother-address" style="display: block; margin-bottom: 5px; font-weight: bold;">Mother's Address (if different from child):</label>
-            <input type="text" id="mother-address" name="motherAddress" style="width: calc(100% - 20px); padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
-          </div>
-        <div class="form-group">
-          <label for="mother-occupation">Mother's Occupation:</label>
-          <input type="text" id="mother-occupation" name="motherOccupation">
-        </div>
-        <div class="form-group">
-          <label for="mother-education">Mother's Education:</label>
-          <input type="text" id="mother-education" name="motherEducation">
-        </div>
-        <div class="form-group">
-          <label for="mother-first-language">Mother's First Language:</label>
-          <input type="text" id="mother-first-language" name="motherFirstLanguage">
-        </div>
-        <div class="form-group">
-          <label for="mother-other-languages">Other languages spoken by Mother:</label>
-          <input type="text" id="mother-other-languages" name="motherOtherLanguages">
-        </div>
-        <div class="form-group">
-          <label for="father-name">Father's Name:</label>
-          <input type="text" id="father-name" name="fatherName">
-        </div>
-        <div class="form-group">
+
+
+<!---------------------------------------------- Fathers Form------------------------------------------------------->
+
+<div class="form-fathers-container">
+  <div class="form-fathers-group form-fathers-header" id="form-group-father-name">
+      <label for="father-name">Father's Name:</label>
+      <input type="text" id="father-name" name="fatherName" class="form-fathers-full-width">
+  </div>
+  <div class="form-fathers-left-column">
+      <div class="form-fathers-group" id="form-group-father-telephone-home">
           <label for="father-telephone-home">Father's Telephone (Home):</label>
           <input type="text" id="father-telephone-home" name="fatherTelephoneHome">
-        </div>
-        <div class="form-group">
-          <label for="father-telephone-work">Father's Telephone (Work):</label>
-          <input type="text" id="father-telephone-work" name="fatherTelephoneWork">
-        </div>
-        <div class="form-group" style="margin-bottom: 20px;">
-            <label for="father-address" style="display: block; margin-bottom: 5px; font-weight: bold;">Father's Address (if different from child):</label>
-            <input type="text" id="father-address" name="fatherAddress" style="width: calc(100% - 20px); padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
-          </div>
-        <div class="form-group">
+      </div>
+      <div class="form-fathers-group" id="form-group-father-address">
+          <label for="father-address">Father's Address (if different from child):</label>
+          <input type="text" id="father-address" name="fatherAddress" class="form-fathers-full-width">
+      </div>
+      <div class="form-fathers-group" id="form-group-father-occupation">
           <label for="father-occupation">Father's Occupation:</label>
           <input type="text" id="father-occupation" name="fatherOccupation">
-        </div>
-        <div class="form-group">
-          <label for="father-education">Father's Education:</label>
-          <input type="text" id="father-education" name="fatherEducation">
-        </div>
-        <div class="form-group">
+      </div>
+      <div class="form-fathers-group" id="form-group-father-first-language">
           <label for="father-first-language">Father's First Language:</label>
           <input type="text" id="father-first-language" name="fatherFirstLanguage">
-        </div>
-        <div class="form-group">
+      </div>
+  </div>
+  <div class="form-fathers-right-column">
+      <div class="form-fathers-group" id="form-group-father-telephone-work">
+          <label for="father-telephone-work">Father's Telephone (Work):</label>
+          <input type="text" id="father-telephone-work" name="fatherTelephoneWork">
+      </div>
+      <div class="form-fathers-group" id="form-group-father-education">
+          <label for="father-education">Father's Education:</label>
+          <input type="text" id="father-education" name="fatherEducation">
+      </div>
+      <div class="form-fathers-group" id="form-group-father-other-languages">
           <label for="father-other-languages">Other languages spoken by Father:</label>
           <input type="text" id="father-other-languages" name="fatherOtherLanguages">
-        </div>
-        <div class="form-group">
-          <label for="child-lives-with">Child lives with:</label>
-          <input type="text" id="child-lives-with" name="childLivesWith">
-        </div>
-        <div class="form-group">
-          <label for="relationship">Relationship:</label>
-          <input type="text" id="relationship" name="relationship">
-        </div>
-        <div class="form-group">
-          <label for="persons-in-household">Number of persons in household:</label>
-          <input type="text" id="persons-in-household" name="personsInHousehold">
-        </div>
-        <div class="form-group">
-          <label for="form-completed-by">Person completing this form:</label>
-          <input type="text" id="form-completed-by" name="formCompletedBy">
-        </div>
-        <div class="form-group">
-          <label for="referred-by">Referred by:</label>
-          <input type="text" id="referred-by" name="referredBy">
-        </div>
-        <div class="form-group">
-          <label for="physician-name">Child's Physician:</label>
-          <input type="text" id="physician-name" name="physicianName">
-        </div>
-        <div class="form-group">
-          <label for="physician-telephone">Physician's Telephone:</label>
-          <input type="text" id="physician-telephone" name="physicianTelephone">
-        </div>
-        <div class="form-group" style="margin-bottom: 20px;">
-            <label for="physician-address" style="display: block; margin-bottom: 5px; font-weight: bold;">Physician's Address:</label>
-            <input type="text" id="physician-address" name="physicianAddress" style="width: calc(100% - 20px); padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
-          </div>
-        <div class="form-group">
-          <label for="dentist-name">Child's Dentist:</label>
-          <input type="text" id="dentist-name" name="dentistName">
-        </div>
-        <div class="form-group">
-          <label for="dentist-telephone">Dentist's Telephone:</label>
-          <input type="text" id="dentist-telephone" name="dentistTelephone">
-        </div>
-        <div class="form-group" style="margin-bottom: 20px;">
-            <label for="dentist-address" style="display: block; margin-bottom: 5px; font-weight: bold;">Dentist's Address:</label>
-            <input type="text" id="dentist-address" name="dentistAddress" style="width: calc(100% - 20px); padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
-          </div>
+      </div>
+  </div>
+</div>
+
+<!---------------------------------------------- child------------------------------------------------------->
+<style>
+.form-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.child-lives-with {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.relationship {
+  flex: 1;
+}
+
+/* Adjustments for smaller screens */
+@media screen and (max-width: 600px) {
+  .form-container {
+    flex-direction: column;
+  }
+  
+  .child-lives-with,
+  .relationship {
+    flex: none;
+    width: 100%;
+    margin-right: 0;
+  }
+}
+
+
+</style>
+<div class="form-container">
+  <div class="child-lives-with">
+    <label for="child-lives-with">Child lives with:</label>
+    <input type="text" id="child-lives-with" name="child-lives-with">
+  </div>
+  <div class="relationship">
+    <label for="relationship">Relationship:</label>
+    <input type="text" id="relationship" name="relationship">
+  </div>
+
+</div>
+<div class="persons-in-household">
+  <label for="persons-in-household">Number of persons in household:</label>
+  <input type="text" id="persons-in-household" name="persons-in-household">
+</div>
+
+  <!----------------------------------------------------- Completion --------------------------------------------------->
+<style>
+.completion-info-container {
+    display: flex;
+    justify-content: space-between; /* Aligns items with space between */
+    gap: 20px; /* Creates spacing between left and right sections */
+    box-sizing: border-box;
+    padding: 20px; /* Added padding for spacing */
+}
+
+.completion-info-group {
+    width: calc(50% - 10px); /* Adjusted width for each group */
+    box-sizing: border-box;
+}
+
+/* Styles for labels and inputs */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+</style>
+
+<div class="completion-info-container">
+  <!-- Left Side -->
+  <div class="completion-info-group" id="form-group-form-completed-by">
+      <label for="form-completed-by">Person completing this form:</label>
+      <input type="text" id="form-completed-by" name="formCompletedBy">
+  </div>
+  
+  <!-- Right Side -->
+  <div class="completion-info-group" id="form-group-referred-by">
+      <label for="referred-by">Referred by:</label>
+      <input type="text" id="referred-by" name="referredBy">
+  </div>
+</div>
+
+<!----------------------------------------------------- Physician /Dentist------------------------------------------------->
+<style>
+  .physician-info-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping for responsive layout */
+    gap: 20px; /* Creates spacing between elements */
+    box-sizing: border-box;
+    padding: 20px; /* Added padding for spacing */
+}
+
+.physician-info-group {
+    width: 100%; /* Full width by default */
+    box-sizing: border-box;
+}
+
+/* Left-aligned items */
+.physician-info-group.left {
+    flex: 0 0 calc(50% - 10px); /* Adjusted width for left group */
+}
+
+/* Right-aligned items */
+.physician-info-group.right {
+    flex: 0 0 calc(50% - 10px); /* Adjusted width for right group */
+}
+
+/* Styles for labels and inputs */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+</style>
+
+<div class="physician-info-container">
+  <!-- Left Side -->
+  <div class="physician-info-group left" id="form-group-physician-name">
+      <label for="physician-name">Child's Physician:</label>
+      <input type="text" id="physician-name" name="physicianName">
+  </div>
+  <div class="physician-info-group left" id="form-group-physician-address">
+      <label for="physician-address">Address:</label>
+      <input type="text" id="physician-address" name="physicianAddress">
+  </div>
+  
+  <!-- Right Side -->
+  <div class="physician-info-group right" id="form-group-physician-telephone">
+      <label for="physician-telephone">Telephone:</label>
+      <input type="text" id="physician-telephone" name="physicianTelephone">
+  </div>
+</div>
+
+<div class="physician-info-container">
+  <!-- Left Side -->
+  <div class="physician-info-group left" id="form-group-dentist-name">
+      <label for="dentist-name">Child's Dentist:</label>
+      <input type="text" id="dentist-name" name="dentistName">
+  </div>
+  <div class="physician-info-group left" id="form-group-dentist-address">
+      <label for="dentist-address">Address:</label>
+      <input type="text" id="dentist-address" name="dentistAddress">
+  </div>
+  
+  <!-- Right Side -->
+  <div class="physician-info-group right" id="form-group-dentist-telephone">
+      <label for="dentist-telephone">Telephone:</label>
+      <input type="text" id="dentist-telephone" name="dentistTelephone">
+  </div>
+</div>
+
+ <!------------------------------------------ Description of the Problem -=----=----=----=----=----=----=----=----->
+
           <div class="form-group" style="margin-bottom: 20px;">
             <label for="problem-description" style="display: block; margin-bottom: 5px; font-weight: bold;">Description of problem:</label>
             <textarea id="problem-description" name="problemDescription" rows="5" style="width: 400px; min-height: 100px; padding: 8px; border: 1px solid #ccc; border-radius: 5px; resize: vertical;"></textarea>
@@ -348,10 +529,10 @@ textarea {
             <textarea id="speech-therapy" name="speechTherapy" rows="5" style="width: 400px; min-height: 100px; padding: 8px; border: 1px solid #ccc; border-radius: 5px; resize: vertical;"></textarea>
           </div>
           <div class="next-btn-container">
-            
+            <button type="button" class="next-btn" onclick="previous()"><img src="./Images/Previous.png" alt="Previous"><span class="subtitle">Previous</span></button>  
             <button type="button" class="next-btn" onclick="next()"><img src="./Images/next.png" alt="Next"><span class="subtitle">Next</span></button>
-            <button type="button" class="next-btn" onclick="saveFormData(1)"><img src="./Images/save.png" alt="Save"><span class="subtitle">Save</span></button>
-          </div>
+            <button type="button" class="next-btn" onclick="saveFormData(2)"><img src="./Images/save.png" alt="Save"><span class="subtitle">Save</span></button>
+        </div>
       </form>    
     </div>
 
@@ -369,46 +550,252 @@ textarea {
     </div>
     <div>
         <p><strong>MEDICAL HISTORY:</strong></p>
-        <p>Condition of mother during pregnancy:</p>
-        <p>Serious illnesses: <input type="text"> When: <input type="text"></p>
+        <section>
+        <style>
+          .condition-wrapper {
+  margin-bottom: 20px;
+}
+
+.condition-wrapper p {
+  margin-bottom: 10px;
+}
+
+.condition-wrapper input[type="text"] {
+  width: 150px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-right: 10px; /* Add some spacing between input fields */
+}
+        </style>
+        <div class="condition-wrapper">
+          <p>Condition of mother during pregnancy:</p>
+          <p>Serious illnesses: <input type="text"> When: <input type="text"></p>
+        </div>
         <p>Length of pregnancy: <input type="text"></p>
-        <p>RH blood factors of Father: <input type="text"> Mother: <input type="text"></p>
+        <div class="condition-wrapper">
+          
+          <p>RH blood factors of Father: <input type="text"> Mother: <input type="text"></p>
+        </div>
+      </section>
+        
+     
         <p>Prolonged emotional stress: <input type="text"></p>
         <p>Medications taken: <input type="text"></p>
         <p>In Vitro Fertilization or Fertility Drugs?: <input type="text"></p>
         <p>Other unusual conditions: <input type="text"></p>
         <!-- Add more fields as needed -->
     </div>
+
+
+
+
     <div>
         <p><strong>Conditions during and following birth:</strong></p>
         <p>Place of birth: <input type="text"></p>
+        <div class="condition-wrapper">
         <p>Duration of labor: <input type="text"> Birth weight: <input type="text"></p>
         <p>Type of delivery: <input type="text"> Instruments used: <input type="text"></p>
+        </div>
         <p>Any injuries, bruises, deformity of head: <input type="text"></p>
+        <div class="condition-wrapper">
         <p>Breathing difficulties: <input type="text"> Feeding difficulties: <input type="text"></p>
         <p>In incubator or ICU isolation: <input type="text"> Jaundice or Anoxia: <input type="text"></p>
+        </div>
         <p>Other unusual conditions: <input type="text"></p>
         <!-- Add more fields as needed -->
     </div>
-    <div>
-        <p><strong>HISTORY OF CHILDHOOD ILLNESS:</strong></p>
-        <p>Measles: <input type="text"> Asthma: <input type="text"></p>
-        <p>Mumps: <input type="text"> Allergies: <input type="text"></p>
-        <p>Scarlet Fever: <input type="text"> Diabetes: <input type="text"></p>
-        <p>Pneumonia: <input type="text"> Epilepsy: <input type="text"></p>
-        <p>High Fevers: <input type="text"> Meningitis: <input type="text"></p>
-        <p>Chronic Colds: <input type="text"> Encephalitis: <input type="text"></p>
-        <!-- Add more fields as needed -->
+
+
+
+    <section>
+    <style>
+      .health-conditions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-column, .right-column {
+  width: 48%;
+}
+
+.left-column p, .right-column p {
+  margin-bottom: 10px;
+}
+
+.left-column input[type="text"], .right-column input[type="text"] {
+  width: 80%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+    </style>
+    <div class="health-conditions">
+      <div class="left-column">
+        <p>Measles: <input type="text"></p>
+        <p>Mumps: <input type="text"></p>
+        <p>Scarlet Fever: <input type="text"></p>
+        <p>Pneumonia: <input type="text"></p>
+        <p>High Fevers: <input type="text"></p>
+        <p>Chronic Colds: <input type="text"></p>
+      </div>
+      <div class="right-column">
+        <p>Asthma: <input type="text"></p>
+        <p>Allergies: <input type="text"></p>
+        <p>Diabetes: <input type="text"></p>
+        <p>Epilepsy: <input type="text"></p>
+        <p>Meningitis: <input type="text"></p>
+        <p>Encephalitis: <input type="text"></p>
+      </div>
     </div>
+
+  </section>
+
+
+
+
     <div>
         <p><strong>EAR PROBLEMS:</strong></p>
-        <p>How many: <input type="text"> Right Ear: <input type="text"> Left Ear: <input type="text"></p>
-        <p>When: <input type="text"> Treatment: <input type="text"></p>
+
+<section>
+  <style>
+    .ear-info {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.row .left-input {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.row .center-input {
+  flex: 2;
+  margin-right: 10px;
+}
+
+.row .right-input {
+  flex: 1;
+}
+
+.long-input {
+  flex: 3;
+}
+
+.row label {
+  margin-right: 5px;
+  white-space: nowrap;
+}
+
+  </style>
+</section>        
+<div class="ear-info">
+  <div class="row">
+    <label>How many:</label>
+    <input type="text" class="left-input">
+    <label>Right Ear:</label>
+    <input type="text" class="center-input">
+    <label>Left Ear:</label>
+    <input type="text" class="right-input">
+  </div>
+  <div class="row">
+    <label>When:</label>
+    <input type="text" class="left-input">
+    <label>Treatment:</label>
+    <input type="text" class="center-input long-input">
+  </div>
+</div>
+</section> 
+
         <p>Complaints of pain, itching in ear? Yes <input type="radio" name="ear-complaints"> No <input type="radio" name="ear-complaints"></p>
         <p>Discharge from ear? Yes <input type="radio" name="ear-discharge"> No <input type="radio" name="ear-discharge"></p>
+        
+        <section>
+          <style>
+.hearing-info p {
+  margin-bottom: 20px;
+}
+
+.row {
+  display: flex;
+  align-items: flex-start; /* Align items to the start for labels to be on top */
+  justify-content: space-between;
+}
+
+.left-section {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+}
+
+.left-section label {
+  margin-bottom: 5px;
+}
+
+.center-section {
+  display: flex;
+  flex-direction: column;
+  margin-right: auto;
+  margin-left: auto;
+  align-items: center; /* Center the contents */
+}
+
+.center-section label {
+  margin-bottom: 5px;
+}
+
+.center-input {
+  width: 150px;
+}
+
+.right-section {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  align-items: flex-end; /* Align contents to the end */
+}
+
+.right-section label {
+  margin-bottom: 5px;
+}
+
+.right-input {
+  width: 150px;
+}
+
+          </style>
+      
+        
+      <div class="hearing-info">
         <p>Hearing fluctuations (Describe): <input type="text"></p>
-        <p>Tubes in ears? Yes <input type="radio" name="tubes"> No <input type="radio" name="tubes"> When? <input type="text"> Which ear? <input type="text"></p>
-        <!-- Add more fields as needed -->
+        <div class="row">
+          <div class="left-section">
+            <label>Tubes in ears?</label>
+            <label>Yes <input type="radio" name="tubes"></label>
+            <label>No <input type="radio" name="tubes"></label>
+          </div>
+          <div class="center-section">
+            <label>When?</label>
+            <input type="text" class="center-input">
+          </div>
+          <div class="right-section">
+            <label>Which ear?</label>
+            <input type="text" class="right-input">
+          </div>
+        </div>
+      </div>
+      </section>
     </div>
     <div class="next-btn-container">
         <button type="button" class="next-btn" onclick="previous()"><img src="./Images/Previous.png" alt="Previous"><span class="subtitle">Previous</span></button>  
@@ -424,11 +811,50 @@ textarea {
 <div class="item-content" id="item-content-3">
     <h2>Content 3</h2>
     
+<section>
+  <style>
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .reason-age-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+
+    .reason-age-row .reason-section {
+      flex-grow: 1;
+    }
+
+    .reason-age-row .right-label,
+    .reason-age-row .right-input {
+      margin-left: -50px;
+    }
+
+    .right-input {
+      width: 100px; /* Adjust the width as needed */
+    }
+  </style>
     <div class="form-group">
-        <label for="hospitalizations">HOSPITALIZATIONS:</label>
-        <textarea id="hospitalizations" rows="10" style="width: 100%;"></textarea>
-        <p>Reason: <input type="text"> Age: <input type="text"> 
+      <label for="hospitalizations">HOSPITALIZATIONS:</label>
+      
+      <div class="reason-age-row">
+        <div class="reason-section">
+          <label for="reason">Reason:</label>
+          <textarea id="reason" rows="4" style="width: calc(100% - 110px);"></textarea>
+          <!-- Adjusted the width to accommodate the Age input -->
+        </div>
+        <div>
+          <label for="age" class="right-label">Age:</label>
+          <input type="text" id="age" class="right-input">
+        </div>
+      </div>
     </div>
+  </section>
+
+
     <div class="form-group">
         <label for="current-medical-problems">CURRENT MEDICAL PROBLEMS:</label>
         <textarea id="current-medical-problems" rows="5" style="width: 100%;"></textarea>
@@ -585,17 +1011,51 @@ textarea {
         <span class="close" onclick="closeRelativeWindow()">&times;</span>
         <h2>Relatives Information</h2>
     </div>
+    
     <div class="floating-content">
-        <div class="relative-info">
-            <label>Name:</label>
-            <input type="text" id="relative-name">
-            <label>Relationship:</label>
-            <input type="text" id="relative-relationship">
-            <label>Description of Difficulty:</label>
-            <textarea id="relative-difficulty"></textarea>
-        </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Relationship</th>
+            <th>Description of Difficulty</th>
+          </tr>
+        </thead>
+        <tbody id="table1">
+          <!-- Rows will be added dynamically using JavaScript -->
+        </tbody>
+      </table>
+      
+      <!-- Table 2 -->
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Relationship</th>
+            <th>Description of Difficulty</th>
+          </tr>
+        </thead>
+        <tbody id="table2">
+          <!-- Rows will be added dynamically using JavaScript -->
+        </tbody>
+      </table>
+      
+      <!-- Table 3 -->
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Relationship</th>
+            <th>Description of Difficulty</th>
+          </tr>
+        </thead>
+        <tbody id="table3">
+          <!-- Rows will be added dynamically using JavaScript -->
+        </tbody>
+      </table>
         <button type="button" class="button-style" onclick="addRelative()">Save Relative</button>
     </div>
+    
 </div>
     <div class="next-btn-container">
         <button type="button" class="next-btn" onclick="previous()"><img src="./Images/Previous.png" alt="Previous"><span class="subtitle">Previous</span></button>  
@@ -626,13 +1086,46 @@ textarea {
 
     <div class="form-group">
         <label for="developmental-history">DEVELOPMENTAL AND SOCIAL HISTORY:</label>
-        <br>
-        <label>At what age did the child:</label>
-        <label>Sit alone: <input type="text" name="age-sit-alone"></label>
-        <label>Walk alone: <input type="text" name="age-walk-alone"></label>
-        <label>Begin self-feeding: <input type="text" name="age-self-feeding"></label>
-        <label>Toilet train: <input type="text" name="age-toilet-train"></label>
-        <br>
+
+        <section>
+          <style>
+            .age-inputs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.left-inputs {
+  width: 45%;
+}
+
+.right-inputs {
+  width: 45%;
+}
+
+.left-inputs label,
+.right-inputs label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+          </style>
+        
+        <div class="age-inputs">
+          <div class="left-inputs">
+            <label>Sit alone: <input type="text" name="age-sit-alone"></label>
+            <label>Walk alone: <input type="text" name="age-walk-alone"></label>
+          </div>
+          <div class="right-inputs">
+            <label>Begin self-feeding: <input type="text" name="age-self-feeding"></label>
+            <label>Toilet train: <input type="text" name="age-toilet-train"></label>
+          </div>
+        </div>
+      </section>
+
+
+
         <label for="physical-disabilities">Does the child have any physical disabilities or impairments?</label>
         <textarea id="physical-disabilities" rows="3"></textarea>
         <br>
@@ -652,23 +1145,207 @@ textarea {
         <textarea id="personality" rows="3"></textarea>
         <br>
         <label for="unusual-behavior">Any unusual behavior:</label>
-        <br>
+
+
+
+        <section>
+          <style>
+            .behavioral-traits {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-column,
+.right-column {
+    flex: 0 0 48%; /* Adjust the width as needed */
+}
+
+.left-column label,
+.right-column label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.left-column input,
+.right-column input {
+    width: 100%;
+}
+
+          </style>
+        <div class="behavioral-traits">
+    <div class="left-column">
         <label>Overactive for age: <input type="text" name="overactive"></label>
-        <label>Highly distractible: <input type="text" name="distractible"></label>
         <label>Bedwetting: <input type="text" name="bedwetting"></label>
+    </div>
+    <div class="right-column">
+        <label>Highly distractible: <input type="text" name="distractible"></label>
         <label>Restless Sleep: <input type="text" name="restless-sleep"></label>
-        <label>Rocking, staring, banging head, other: <input type="text" name="other-behavior"></label>
-        <br>
-        <label>How would you rate the child’s learning ability? <input type="text" name="learning-ability"></label>
-        <br>
-        <label>What are the child’s special interests or hobbies? <input type="text" name="special-interests"></label>
     </div>
-    <div class="next-btn-container">
-        <button type="button" class="next-btn" onclick="previous()"><img src="./Images/Previous.png" alt="Previous"><span class="subtitle">Previous</span></button>  
-        <button type="button" class="next-btn" onclick="next()"><img src="./Images/next.png" alt="Next"><span class="subtitle">Next</span></button>
-        <button type="button" class="next-btn" onclick="saveFormData(1)"><img src="./Images/save.png" alt="Save"><span class="subtitle">Save</span></button>
-        
+</div>
+</section>
+
+
+
+<form>
+  <label for="behavior-description">Rocking, staring, banging head, other:</label><br>
+  <input type="text" id="behavior-description" name="behavior-description"><br><br>
+  
+  <label for="learning-ability-rating">How would you rate the child’s learning ability?</label><br>
+  <input type="text" id="learning-ability-rating" name="learning-ability-rating"><br><br>
+  
+  <label for="special-interests">What are the child’s special interests or hobbies?</label><br>
+  <input type="text" id="special-interests" name="special-interests"><br><br>
+  
+  
+</form>
+
+<form>
+  <h2>Speech-Language History</h2>
+  <label for="babble-age">At what age did the child begin to make repeated sounds/Babble?</label><br>
+  <input type="text" id="babble-age" name="babble-age"><br><br>
+  
+  <label for="first-words-age">At what age did the child begin to use first meaningful words?</label><br>
+  <input type="text" id="first-words-age" name="first-words-age"><br><br>
+  
+  <label for="two-three-words-age">At what age did the child begin to use two and three-word phrases?</label><br>
+  <input type="text" id="two-three-words-age" name="two-three-words-age"><br><br>
+  
+  <label for="sentences-age">At what age did the child begin to use complete sentences?</label><br>
+  <input type="text" id="sentences-age" name="sentences-age"><br><br>
+  
+  <label for="communication-methods">How does the child make needs and wants known to others?</label><br>
+  <textarea id="communication-methods" name="communication-methods" rows="3"></textarea><br><br>
+  
+  <label for="speech-understandable-family">Is the child’s speech difficult for the family to understand?</label><br>
+  <input type="text" id="speech-understandable-family" name="speech-understandable-family"><br><br>
+  
+  <label for="speech-understandable-others">For others?</label><br>
+  <input type="text" id="speech-understandable-others" name="speech-understandable-others"><br><br>
+  
+  <label for="understanding-difficulty">Does the child have any difficulty understanding what others are saying?</label><br>
+  <input type="text" id="understanding-difficulty" name="understanding-difficulty"><br><br>
+  
+  <label for="use-gestures">Do you use gestures to make the child understand?</label><br>
+  <input type="text" id="use-gestures" name="use-gestures"><br><br>
+  
+  
+</form>
+
+  
+
+  <form>
+  
+    <div class="age-inputs">
+      <div class="left-inputs">
+  
+        <label>Use incorrect sounds in words: <input type="text" name="age-walk-alone"></label>
+      </div>
+      <div class="right-inputs">
+  
+        <label>Use incorrect words: <input type="text" name="age-toilet-train"></label>
+      </div>
     </div>
+  
+
+    <style>
+      .form-container {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr); /* Divide into three equal columns */
+          grid-gap: 20px; /* Add some spacing between columns */
+          justify-content: center; /* Center the grid horizontally */
+          align-items: center; /* Center the grid vertically */
+          text-align: center; /* Center align text */
+      }
+      .form-container label {
+          grid-column: span 1; /* Span one column */
+          grid-row: 1; /* First row */
+      }
+      .form-container input[type="text"] {
+          grid-column: span 1; /* Span one column */
+          grid-row: 2; /* Second row */
+      }
+  
+  </style>
+  
+  <form>
+      <div class="form-container">
+          <label>Leave out words:</label>
+          <label>talk too fast:</label>
+          <label>stutter:</label>
+          <input type="text" name="leave-out-words">
+          <input type="text" name="talk-too-fast">
+          <input type="text" name="stutter">
+      </div>
+  </form>
+
+  
+
+  <style>
+     .speech-voice-container {
+          display: grid;
+          grid-template-columns: 1fr 1fr; /* Divide into two equal columns */
+          grid-gap: 20px; /* Add some spacing between columns */
+          justify-content: center; /* Center the grid horizontally */
+          align-items: center; /* Center the grid vertically */
+          text-align: center; /* Center align text */
+      }
+      .speech-voice-container .speech-label {
+          grid-column: span 1; /* Span one column */
+          grid-row: 1; /* First row */
+      }
+      .speech-voice-container .voice-label {
+          grid-column: span 1; /* Span one column */
+          grid-row: 1; /* First row */
+      }
+      .speech-voice-container .speech-input {
+          grid-column: span 1; /* Span one column */
+          grid-row: 2; /* Second row */
+      }
+      .speech-voice-container .voice-input {
+          grid-column: span 1; /* Span one column */
+          grid-row: 2; /* Second row */
+      }
+  </style>
+  <form>
+    <div class="speech-voice-container">
+        <label for="no_speech" class="speech-label">Use no speech at all:</label>
+        <label for="unusual_voice" class="voice-label">Have unusual voice quality:</label>
+        <input type="text" id="no_speech" name="no_speech" class="speech-input">
+        <input type="text" id="unusual_voice" name="unusual_voice" class="voice-input">
+    </div>
+  </form>
+
+  
+  
+  
+    <label for="signs_gestures">Depend mainly on signs and gestures instead of speech:</label><br>
+    <textarea id="signs_gestures" name="signs_gestures" rows="4"></textarea><br>
+  
+    <label for="other">Other (explain):</label><br>
+    <textarea id="other" name="other" rows="4"></textarea><br>
+  
+    
+  </form>
+
+
+
+
+
+
+  <div class="next-btn-container">
+    <button type="button" class="next-btn" onclick="previous()">
+        <img src="./Images/Previous.png" alt="Previous">
+        <span class="subtitle">Previous</span>
+    </button>  
+    <a href="./Item 5 & 6.html" class="next-btn">
+        <img src="./Images/next.png" alt="Next">
+        <span class="subtitle">Next</span>
+    </a>
+    <button type="button" class="next-btn" onclick="saveFormData(1)">
+        <img src="./Images/save.png" alt="Save">
+        <span class="subtitle">Save</span>
+    </button>
+</div>
   </div>
 
 
@@ -676,282 +1353,507 @@ textarea {
 
 
 <div class="item-content" id="item-content-5">
-    <h2>Content 5</h2>
-    <div class="form-group">
-        <label for="use-gestures">Do you use gestures to make the child understand?</label>
-        <textarea id="use-gestures" rows="3"></textarea>
-        <br>
-        <label>Does the child:</label>
-        <br>
-        <label>Use incorrect sounds in words: <input type="text" name="incorrect-sounds"></label>
-        <label>Use incorrect words: <input type="text" name="incorrect-words"></label>
-        <label>Leave out words: <input type="text" name="leave-out-words"></label>
-        <label>Talk too fast: <input type="text" name="talk-too-fast"></label>
-        <label>Stutter: <input type="text" name="stutter"></label>
-        <label>Use no speech at all: <input type="text" name="no-speech"></label>
-        <label>Have unusual voice quality: <input type="text" name="unusual-voice"></label>
-        <label>Depend mainly on signs and gestures instead of speech: <input type="text" name="signs-and-gestures"></label>
-        <label>Other (explain): <textarea id="other-speech-problems" rows="3"></textarea></label>
-    </div>
+  <h2>Content 5</h2>
+  
 
-    <div class="form-group">
-        <label for="learned-to-talk">DEVELOPMENTAL AND SOCIAL HISTORY:</label>
-        <br>
-        <label>Did the child ever learn to talk and then stop talking?</label>
-        <textarea id="learned-to-talk" rows="3"></textarea>
-        <br>
-        <label>Describe what happened:</label>
-        <textarea id="describe-what-happened" rows="3"></textarea>
-        <br>
-        <label>What, if anything, has been done about the child’s speech up to now and with what results?</label>
-        <textarea id="speech-intervention" rows="3"></textarea>
-        <br>
-        <label>Are there any problems with:</label>
-        <br>
-        <label>Teeth: <input type="text" name="teeth"></label>
-        <label>Palate: <input type="text" name="palate"></label>
-        <label>Throat: <input type="text" name="throat"></label>
-        <label>Tongue: <input type="text" name="tongue"></label>
-        <label>Other: <input type="text" name="other-problems"></label>
-        <br>
-        <label>What do you think might be the cause of the child’s speech/language problem?</label>
-        <textarea id="cause-of-problem" rows="3"></textarea>
-        <br>
-        <label>Is the child aware of the speech/language problem?</label>
-        <label><input type="radio" name="awareness" value="yes"> Yes</label>
-        <label><input type="radio" name="awareness" value="no"> No</label>
-    </div>
+  <div class="form-group">
+      <label for="learned-to-talk">DEVELOPMENTAL AND SOCIAL HISTORY:</label>
+      <br>
+      <label>Did the child ever learn to talk and then stop talking?</label>
+      <textarea id="learned-to-talk" rows="3"></textarea>
+      <br>
+      <label>Describe what happened:</label>
+      <textarea id="describe-what-happened" rows="3"></textarea>
+      <br>
+      <label>What, if anything, has been done about the child’s speech up to now and with what results?</label>
+      <textarea id="speech-intervention" rows="3"></textarea>
+      <br>
+      <label>Are there any problems with:</label>
+      <br>
 
-    <div class="form-group">
-        <label for="hearing-well">HEARING HISTORY:</label>
-        <br>
-        <label>Do you think the child hears well?</label>
-        <textarea id="hearing-well" rows="3"></textarea>
-        <br>
-        <label>If not, when was the problem first noticed?</label>
-        <textarea id="hearing-problem-notice" rows="3"></textarea>
-        <br>
-        <label>Has the child’s hearing become worse?</label>
-        <textarea id="hearing-worse" rows="3"></textarea>
-        <br>
-        <label>If so, over what period of time?</label>
-        <textarea id="hearing-worse-time" rows="3"></textarea>
-    </div>
 
-    <div class="form-group">
-        <label>HEARING HISTORY, CONTINUED:</label>
-        <br>
-        <label>Does the child seem to hear better at certain times than others?</label>
-        <textarea id="better-at-certain-times" rows="3"></textarea>
-        <br>
-        <label>If so, when?</label>
-        <textarea id="better-times" rows="3"></textarea>
-        <br>
-        <label>Does the child seem to hear better in one ear than the other?</label>
-        <textarea id="better-in-one-ear" rows="3"></textarea>
-        <br>
-        <label>Which ear seems better?</label>
-        <textarea id="better-ear" rows="3"></textarea>
-        <br>
-        <label>Has the child’s hearing ever been tested before?</label>
-        <textarea id="tested-before" rows="3"></textarea>
-        <br>
-        <label>Where?</label>
-        <textarea id="tested-where" rows="3"></textarea>
-        <br>
-        <label>Results:</label>
-        <textarea id="hearing-test-results" rows="3"></textarea>
-        <br>
-        <label>Has the child received medical treatment for ear/s or hearing problem?</label>
-        <textarea id="medical-treatment" rows="3"></textarea>
-        <br>
-        <label>If so, when?</label>
-        <textarea id="treatment-when" rows="3"></textarea>
-        <br>
-        <label>Doctor’s name and address:</label>
-        <textarea id="doctor-info" rows="3"></textarea>
-        <br>
-        <label>Doctor’s finding and treatment:</label>
-        <textarea id="doctor-treatment" rows="3"></textarea>
-        <br>
-        <label>Does the child have to watch your face to understand you?</label>
-        <label><input type="radio" name="watch-face" value="yes"> Yes</label>
-        <label><input type="radio" name="watch-face" value="no"> No</label>
-        <br>
-        <label>Does the child respond to:</label>
-        <br>
-        <label>Own name: <input type="text" name="own-name"></label>
-        <label>Vibrations: <input type="text" name="vibrations"></label>
-        <label>Soft speech and noises: <input type="text" name="soft-speech"></label>
-        <label>Gestures: <input type="text" name="gestures"></label>
-        <label>Verbal commands: <input type="text" name="verbal-commands"></label>
-        <label>Loud noises only: <input type="text" name="loud-noises"></label>
-        <br>
-        <label>Does the child appear alarmed or annoyed by loud sounds?</label>
-        <textarea id="alarmed-by-loud-sounds" rows="3"></textarea>
-        <br>
-        <label>Does the child seem to ignore sounds?</label>
-        <textarea id="ignore-sounds" rows="3"></textarea>
-        <br>
-        <label>Has the child ever worn a hearing aid?</label>
-        <textarea id="worn-hearing-aid" rows="3"></textarea>
-        <br>
-        <label>Brand:</label>
-        <input type="text" name="hearing-aid-brand">
-        <br>
-        <label>Which ear:</label>
-        <input type="text" name="hearing-aid-ear">
-    </div>
-    <div class="next-btn-container">
-        <button type="button" class="next-btn" onclick="previous()"><img src="./Images/Previous.png" alt="Previous"><span class="subtitle">Previous</span></button>  
-        <button type="button" class="next-btn" onclick="next()"><img src="./Images/next.png" alt="Next"><span class="subtitle">Next</span></button>
-        <button type="button" class="next-btn" onclick="saveFormData(1)"><img src="./Images/save.png" alt="Save"><span class="subtitle">Save</span></button>
-        
-    </div>
+
+
+
+
+     <section>
+      <style>
+         table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 10px; /* Adjust spacing between cells */
+  }
+  td {
+      padding: 10px; /* Add padding to each cell */
+  }
+  input[type="text"] {
+      width: 100%; /* Make input fields fill the entire cell width */
+      box-sizing: border-box; /* Include padding and border in the element's total width */
+  }
+      </style>
+      <table>
+        <tr>
+            <td><label for="teeth">Teeth:</label></td>
+            <td><label for="palate">Palate:</label></td>
+            <td><label for="throat">Throat:</label></td>
+            <td><label for="tongue">Tongue:</label></td>
+        </tr>
+        <tr>
+            <td><input type="text" id="teeth" name="teeth"></td>
+            <td><input type="text" id="palate" name="palate"></td>
+            <td><input type="text" id="throat" name="throat"></td>
+            <td><input type="text" id="tongue" name="tongue"></td>
+        </tr>
+    </table>
+     </section>
+
+
+
+
+
+
+
+      <label>Other: <input type="text" name="other-problems"></label>
+      <br>
+      <label>What do you think might be the cause of the child’s speech/language problem?</label>
+      <textarea id="cause-of-problem" rows="3"></textarea>
+      <br>
+      <label>Is the child aware of the speech/language problem?</label>
+      <label><input type="radio" name="awareness" value="yes"> Yes</label>
+      <label><input type="radio" name="awareness" value="no"> No</label>
   </div>
+
+  <div class="form-group">
+      <label for="hearing-well">HEARING HISTORY:</label>
+      <br>
+      <label>Do you think the child hears well?</label>
+      <textarea id="hearing-well" rows="3"></textarea>
+      <br>
+      <label>If not, when was the problem first noticed?</label>
+      <textarea id="hearing-problem-notice" rows="3"></textarea>
+      <br>
+      <label>Has the child’s hearing become worse?</label>
+      <textarea id="hearing-worse" rows="3"></textarea>
+      <br>
+      <label>If so, over what period of time?</label>
+      <textarea id="hearing-worse-time" rows="3"></textarea>
+  </div>
+
+  <div class="form-group">
+      <label>HEARING HISTORY, CONTINUED:</label>
+      <br>
+      <label>Does the child seem to hear better at certain times than others?</label>
+      <textarea id="better-at-certain-times" rows="3"></textarea>
+      <br>
+      <label>If so, when?</label>
+      <textarea id="better-times" rows="3"></textarea>
+      <br>
+      <label>Does the child seem to hear better in one ear than the other?</label>
+      <textarea id="better-in-one-ear" rows="3"></textarea>
+      <br>
+      <label>Which ear seems better?</label>
+      <textarea id="better-ear" rows="3"></textarea>
+      <br>
+      <label>Has the child’s hearing ever been tested before?</label>
+      <textarea id="tested-before" rows="3"></textarea>
+
+
+
+
+
+
+
+
+
+
+
+
+     <section>
+      <style>
+  .custom-form-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 900px; /* Adjust width as needed */
+      margin: 0 auto; /* Center the container horizontally */
+  }
+  .custom-box {
+      flex: 1; /* Each box takes up equal space */
+      border: 1px solid #ccc; /* Add border for box */
+      padding: 10px; /* Add padding inside the box */
+      box-sizing: border-box; /* Include padding and border in the element's total width */
+      text-align: center; /* Center the text horizontally */
+  }
+    </style>
+    
+    <div class="custom-form-container">
+      <div class="custom-box">
+          <label for="tested-where">Where?</label>
+          <input type="text" id="tested-where">
+      </div>
+      <div class="custom-box">
+          <label for="hearing-test-results">Results:</label>
+          <input type="text" id="hearing-test-results">
+      </div>
+  </div>
+     </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <label>Has the child received medical treatment for ear/s or hearing problem?</label>
+      <textarea id="medical-treatment" rows="3"></textarea>
+      <br>
+      <label>If so, when?</label>
+      <textarea id="treatment-when" rows="3"></textarea>
+      <br>
+      <label>Doctor’s name and address:</label>
+      <textarea id="doctor-info" rows="3"></textarea>
+      <br>
+      <label>Doctor’s finding and treatment:</label>
+      <textarea id="doctor-treatment" rows="3"></textarea>
+      <br>
+      <label>Does the child have to watch your face to understand you?</label>
+      <label><input type="radio" name="watch-face" value="yes"> Yes</label>
+      <label><input type="radio" name="watch-face" value="no"> No</label>
+      <br>
+      <label>Does the child respond to:</label>
+
+
+
+
+
+
+
+      <section>
+<style>
+  .custom-form-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 900px; /* Adjust width as needed */
+      margin: 0 auto; /* Center the container horizontally */
+  }
+  .custom-box {
+      flex: 1; /* Each box takes up equal space */
+      border: 1px solid #ccc; /* Add border for box */
+      padding: 10px; /* Add padding inside the box */
+      box-sizing: border-box; /* Include padding and border in the element's total width */
+      text-align: center; /* Center the text horizontally */
+      margin-bottom: 10px; /* Add spacing between boxes */
+      display: flex; /* Use flexbox for inner alignment */
+      flex-direction: column; /* Stack content vertically */
+      justify-content: center; /* Center content vertically */
+      align-items: center; /* Center content horizontally */
+  }
+  .custom-box label {
+      margin-bottom: 5px; /* Add spacing between labels */
+  }
+</style>
+<div class="custom-form-container">
+<div class="custom-box left-boxes">
+    <label for="own-name">Own name:</label>
+    <input type="text" id="own-name" name="own-name">
+    <label for="soft-speech">Soft speech and noises:</label>
+    <input type="text" id="soft-speech" name="soft-speech">
+    <label for="verbal-commands">Verbal commands:</label>
+    <input type="text" id="verbal-commands" name="verbal-commands">
+</div>
+<div class="custom-box right-boxes">
+    <label for="vibrations">Vibrations:</label>
+    <input type="text" id="vibrations" name="vibrations">
+    <label for="gestures">Gestures:</label>
+    <input type="text" id="gestures" name="gestures">
+    <label for="loud-noises">Loud noises only:</label>
+    <input type="text" id="loud-noises" name="loud-noises">
+</div>
+</div>
+      </section>
+
+
+
+
+
+
+
+      <label>Does the child appear alarmed or annoyed by loud sounds?</label>
+      <textarea id="alarmed-by-loud-sounds" rows="3"></textarea>
+      <br>
+      <label>Does the child seem to ignore sounds?</label>
+      <textarea id="ignore-sounds" rows="3"></textarea>
+      <br>
+      <label>Has the child ever worn a hearing aid?</label>
+      <textarea id="worn-hearing-aid" rows="3"></textarea>
+      <br>
+      <label>Brand:</label>
+      <input type="text" name="hearing-aid-brand">
+      <br>
+      <label>Which ear:</label>
+      <input type="text" name="hearing-aid-ear">
+  </div>
+  <div class="next-btn-container">
+      <button type="button" class="next-btn" onclick="previous()"><img src="./Images/Previous.png" alt="Previous"><span class="subtitle">Previous</span></button>  
+      <button type="button" class="next-btn" onclick="next()"><img src="./Images/next.png" alt="Next"><span class="subtitle">Next</span></button>
+      <button type="button" class="next-btn" onclick="saveFormData(1)"><img src="./Images/save.png" alt="Save"><span class="subtitle">Save</span></button>
+      
+  </div>
+</div>
 
 
 <!-------------------------------------------------------------------------------------------------------------------------->
 
 <style>
-    #educational-history-table {
-        width: 100%;
-        border-collapse: collapse;
-    }
+  #educational-history-table {
+      width: 100%;
+      border-collapse: collapse;
+  }
 
-    #educational-history-table th,
-    #educational-history-table td {
-        padding: 8px;
-        border: 1px solid #ddd;
-        text-align: left;
-    }
+  #educational-history-table th,
+  #educational-history-table td {
+      padding: 8px;
+      border: 1px solid #ddd;
+      text-align: left;
+  }
 
-    #educational-history-table input[type="text"] {
-        width: 100%;
-        box-sizing: border-box;
-    }
+  #educational-history-table input[type="text"] {
+      width: 100%;
+      box-sizing: border-box;
+  }
 </style>
 
 <div class="item-content" id="item-content-6">
-    <h2>Content 6</h2>
-    <div class="form-group">
-        <label for="vision-history">VISION HISTORY:</label>
-        <br>
-        <label>Do you think the child sees well?</label>
-        <textarea id="vision-well" rows="3"></textarea>
-        <br>
-        <label>Has the child’s vision ever been tested?</label>
-        <textarea id="vision-tested" rows="3"></textarea>
-        <br>
-        <label>If so, what were the results?</label>
-        <textarea id="vision-results" rows="3"></textarea>
-        <br>
-        <label>Does the child wear glasses or contact lenses?</label>
-        <textarea id="glasses-contact-lenses" rows="3"></textarea>
-    </div>
-
-    <div class="form-group">
-        <label for="educational-history">EDUCATIONAL HISTORY:</label>
-        <br>
-        <table id="educational-history-table">
-            <thead>
-                <tr>
-                    <th>School</th>
-                    <th>Teacher's Name</th>
-                    <th>Year</th>
-                    <th>Grade</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><input type="text" name="school1"></td>
-                    <td><input type="text" name="teacher1"></td>
-                    <td><input type="text" name="year1"></td>
-                    <td><input type="text" name="grade1"></td>
-                </tr>
-                <tr>
-                    <td><input type="text" name="school2"></td>
-                    <td><input type="text" name="teacher2"></td>
-                    <td><input type="text" name="year2"></td>
-                    <td><input type="text" name="grade2"></td>
-                </tr>
-                <tr>
-                    <td><input type="text" name="school3"></td>
-                    <td><input type="text" name="teacher3"></td>
-                    <td><input type="text" name="year3"></td>
-                    <td><input type="text" name="grade3"></td>
-                </tr>
-                <tr>
-                    <td><input type="text" name="school4"></td>
-                    <td><input type="text" name="teacher4"></td>
-                    <td><input type="text" name="year4"></td>
-                    <td><input type="text" name="grade4"></td>
-                </tr>
-                <tr>
-                    <td><input type="text" name="school5"></td>
-                    <td><input type="text" name="teacher5"></td>
-                    <td><input type="text" name="year5"></td>
-                    <td><input type="text" name="grade5"></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="form-group">
-        <label>EDUCATIONAL HISTORY, CONTINUED:</label>
-        <br>
-        <label>Has the child ever repeated a grade?</label>
-        <textarea id="repeat-grade" rows="3"></textarea>
-        <br>
-        <label>How is the child doing academically?</label>
-        <textarea id="academic-performance" rows="3"></textarea>
-        <br>
-        <label>In what areas, if any, is the child having difficulty?</label>
-        <textarea id="academic-difficulty" rows="3"></textarea>
-        <br>
-        <label>Has the child ever received any special services in school?</label>
-        <textarea id="special-services" rows="3"></textarea>
-        <br>
-        <label>If so, when?</label>
-        <input type="text" name="special-services-when">
-        <br>
-        <label>If so, what?</label>
-        <textarea id="special-services-what" rows="3"></textarea>
-        <br>
-        <label>Has the child had any intelligence tests?</label>
-        <textarea id="intelligence-tests" rows="3"></textarea>
-        <br>
-        <label>If so, when?</label>
-        <input type="text" name="intelligence-tests-when">
-        <br>
-        <label>By whom?</label>
-        <input type="text" name="intelligence-tests-by">
-        <br>
-        <label>Results:</label>
-        <textarea id="intelligence-test-results" rows="3"></textarea>
-        <br>
-        <label>Does the child enjoy going to school?</label>
-        <textarea id="enjoy-school" rows="3"></textarea>
-        <br>
-        <label>If not, please explain why:</label>
-        <textarea id="school-explanation" rows="3"></textarea>
-        <br>
-        <label>What subjects does the child enjoy most?</label>
-        <textarea id="favorite-subjects" rows="3"></textarea>
-        <br>
-        <label>The least?</label>
-        <textarea id="least-favorite-subjects" rows="3"></textarea>
-        <br>
-        <label>Is there anything else we should know about your child?</label>
-        <textarea id="additional-info" rows="5"></textarea>
-    </div>
-    <div class="next-btn-container">
-        <button type="button" class="next-btn" onclick="previous()"><img src="./Images/Previous.png" alt="Previous"><span class="subtitle">Previous</span></button>  
-        
-        <button type="button" class="next-btn" onclick="saveFormData(1)"><img src="./Images/save.png" alt="Save"><span class="subtitle">Complete</span></button>
-        
-    </div>
+  <h2>Content 6</h2>
+  <div class="form-group">
+      <label for="vision-history">VISION HISTORY:</label>
+      <br>
+      <label>Do you think the child sees well?</label>
+      <textarea id="vision-well" rows="3"></textarea>
+      <br>
+      <label>Has the child’s vision ever been tested?</label>
+      <textarea id="vision-tested" rows="3"></textarea>
+      <br>
+      <label>If so, what were the results?</label>
+      <textarea id="vision-results" rows="3"></textarea>
+      <br>
+      <label>Does the child wear glasses or contact lenses?</label>
+      <textarea id="glasses-contact-lenses" rows="3"></textarea>
   </div>
+
+  <div class="form-group">
+      <label for="educational-history">EDUCATIONAL HISTORY:</label>
+      <br>
+      <table id="educational-history-table">
+          <thead>
+              <tr>
+                  <th>School</th>
+                  <th>Teacher's Name</th>
+                  <th>Year</th>
+                  <th>Grade</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td><input type="text" name="school1"></td>
+                  <td><input type="text" name="teacher1"></td>
+                  <td><input type="text" name="year1"></td>
+                  <td><input type="text" name="grade1"></td>
+              </tr>
+              <tr>
+                  <td><input type="text" name="school2"></td>
+                  <td><input type="text" name="teacher2"></td>
+                  <td><input type="text" name="year2"></td>
+                  <td><input type="text" name="grade2"></td>
+              </tr>
+              <tr>
+                  <td><input type="text" name="school3"></td>
+                  <td><input type="text" name="teacher3"></td>
+                  <td><input type="text" name="year3"></td>
+                  <td><input type="text" name="grade3"></td>
+              </tr>
+              <tr>
+                  <td><input type="text" name="school4"></td>
+                  <td><input type="text" name="teacher4"></td>
+                  <td><input type="text" name="year4"></td>
+                  <td><input type="text" name="grade4"></td>
+              </tr>
+              <tr>
+                  <td><input type="text" name="school5"></td>
+                  <td><input type="text" name="teacher5"></td>
+                  <td><input type="text" name="year5"></td>
+                  <td><input type="text" name="grade5"></td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+
+  <div class="form-group">
+      <label>EDUCATIONAL HISTORY, CONTINUED:</label>
+
+      <section>
+        <style>
+            .custom-form-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start; /* Align items to the top */
+                width: 900px; /* Adjust width as needed */
+                margin: 0 auto; /* Center the container horizontally */
+          margin-bottom: 20px; /* Add spacing between boxes */
+      }
+      .left-section, .right-section {
+          flex: 1; /* Each section takes up equal space */
+          display: flex;
+          flex-direction: column; /* Stack items vertically */
+          align-items: center; /* Align items to the center */
+      }
+      .left-section label, .right-section label {
+          margin-bottom: 5px; /* Add spacing between label and input field */
+          text-align: center; /* Center-align the label */
+      }
+      .right-section {
+          justify-content: flex-end; /* Align items to the right */
+          align-items: center; /* Align items to the center */
+      }
+      .right-section input[type="text"] {
+          width: 150px; /* Adjust width of Grade input field */
+      }
+        </style>
+    
+    <div class="custom-form-container">
+      <div class="left-section">
+          <label for="teachers-name">Teacher’s name:</label>
+          <input type="text" id="teachers-name" name="teachers-name">
+      </div>
+      <div class="right-section">
+          <label for="grade">Grade:</label>
+          <input type="text" id="grade" name="grade">
+      </div>
+  </div>
+    </section>
+
+
+
+
+      <br>
+      <label>Has the child ever repeated a grade?</label>
+      <textarea id="repeat-grade" rows="3"></textarea>
+      <br>
+      <label>How is the child doing academically?</label>
+      <textarea id="academic-performance" rows="3"></textarea>
+      <br>
+      <label>In what areas, if any, is the child having difficulty?</label>
+      <textarea id="academic-difficulty" rows="3"></textarea>
+      <br>
+
+      <div class="custom-form-container">
+        <div class="left-section">
+            <label for="teachers-name">Has the child ever received any special services in school?</label>
+            <input type="text" id="teachers-name" name="teachers-name">
+        </div>
+        <div class="right-section">
+            <label for="grade">If so, when?</label>
+            <input type="text" id="grade" name="grade">
+        </div>
+    </div>
+     
+      <label>If so, what?</label>
+      <textarea id="special-services-what" rows="3"></textarea>
+      <br>
+
+
+      <div class="custom-form-container">
+        <div class="left-section">
+            <label for="teachers-name">Has the child had any intelligence tests?</label>
+            <input type="text" id="teachers-name" name="teachers-name">
+        </div>
+        <div class="right-section">
+            <label for="grade">If so, when?</label>
+            <input type="text" id="grade" name="grade">
+        </div>
+    </div>
+      
+      
+
+
+
+
+
+
+     
+      <br>
+      <label>By whom?</label>
+      <input type="text" name="intelligence-tests-by">
+      <br>
+      <label>Results:</label>
+      <textarea id="intelligence-test-results" rows="3"></textarea>
+      <br>
+
+
+
+
+
+
+      <section>
+        <label>Does the child enjoy going to school?</label>
+        <select id="enjoy-school-dropdown" onchange="toggleExplanation()">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+        <textarea id="enjoy-school" rows="3" style="display: none;"></textarea>
+        <br>
+        <label id="school-explanation-label" style="display: none;">If not, please explain why:</label>
+        <textarea id="school-explanation" rows="3" style="display: none;"></textarea>
+        
+        <script>
+            function toggleExplanation() {
+                var dropdown = document.getElementById("enjoy-school-dropdown");
+                var explanationLabel = document.getElementById("school-explanation-label");
+                var explanationTextarea = document.getElementById("school-explanation");
+                var enjoySchoolTextarea = document.getElementById("enjoy-school");
+    
+                if (dropdown.value === "no") {
+                    explanationLabel.style.display = "block";
+                    explanationTextarea.style.display = "block";
+                    enjoySchoolTextarea.style.display = "none";
+                } else {
+                    explanationLabel.style.display = "none";
+                    explanationTextarea.style.display = "none";
+                    enjoySchoolTextarea.style.display = "block";
+                }
+            }
+        </script>
+    </section>
+
+
+
+
+      <br>
+      <label>What subjects does the child enjoy most?</label>
+      <textarea id="favorite-subjects" rows="3"></textarea>
+      <br>
+      <label>The least?</label>
+      <textarea id="least-favorite-subjects" rows="3"></textarea>
+      <br>
+      <label>Is there anything else we should know about your child?</label>
+      <textarea id="additional-info" rows="5"></textarea>
+  </div>
+  <div class="next-btn-container">
+      <button type="button" class="next-btn" onclick="previous()"><img src="./Images/Previous.png" alt="Previous"><span class="subtitle">Previous</span></button>  
+      
+      <button type="button" class="next-btn" onclick="saveFormData(1)"><img src="./Images/save.png" alt="Save"><span class="subtitle">Complete</span></button>
+      
+  </div>
+</div>
 
 
 
