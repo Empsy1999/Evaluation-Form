@@ -216,6 +216,9 @@ textarea {
         <li><a href="#" onclick="showContent(6)">Item 6</a></li>
         <li><a href="./Pending Evaluation.html">Pending Evaluation</a></li>
         <li><a href="./Successful Evaluation.html">Successful Evaluation</a></li>
+
+        <li><a href="#" onclick="sendLink()">Copy Link</a></li> </ul> 
+        <div class="footer"> <a href="./index.html" class="home-button">Home</a>  </div>
       </ul>
     </div>
   <div class="content">
@@ -1079,9 +1082,24 @@ input[type="text"] {
         <label for="spoken-language">If yes, what language is spoken and by whom?</label>
         <textarea id="spoken-language" rows="3"></textarea>
         <br>
-        <label for="understand-language">Does the child understand or speak this language?</label>
-        <label><input type="radio" name="understand-language" value="yes"> Yes</label>
-        <label><input type="radio" name="understand-language" value="no"> No</label>
+
+        <!-------------------------------------------------new update--------------------------------------------------->
+        <form>
+          <label for="understand-language">Does the child understand or speak this language?</label>
+          <label><input type="radio" name="understand-language" value="yes"> Yes</label>
+          <label><input type="radio" name="understand-language" value="no"> No</label>
+          <br><br>
+  
+          <label for="understand-percentage">If they understand this other language, how much do they understand? (get a rough percentage)</label>
+          <input type="number" id="understand-percentage" name="understand-percentage" min="0" max="100" placeholder="e.g., 75">
+          <br><br>
+  
+          <label for="speak-percentage">If they speak this other language, how much do they speak it in a day? (get a rough percentage)</label>
+          <input type="number" id="speak-percentage" name="speak-percentage" min="0" max="100" placeholder="e.g., 50">
+          <br><br>
+  
+          
+      </form>
     </div>
 
     <div class="form-group">
@@ -1199,37 +1217,85 @@ input[type="text"] {
   
 </form>
 
+<!----------------------------------------------------------------new update speech language history------------------------>
 <form>
   <h2>Speech-Language History</h2>
-  <label for="babble-age">At what age did the child begin to make repeated sounds/Babble?</label><br>
-  <input type="text" id="babble-age" name="babble-age"><br><br>
-  
-  <label for="first-words-age">At what age did the child begin to use first meaningful words?</label><br>
-  <input type="text" id="first-words-age" name="first-words-age"><br><br>
-  
-  <label for="two-three-words-age">At what age did the child begin to use two and three-word phrases?</label><br>
-  <input type="text" id="two-three-words-age" name="two-three-words-age"><br><br>
-  
-  <label for="sentences-age">At what age did the child begin to use complete sentences?</label><br>
-  <input type="text" id="sentences-age" name="sentences-age"><br><br>
-  
-  <label for="communication-methods">How does the child make needs and wants known to others?</label><br>
-  <textarea id="communication-methods" name="communication-methods" rows="3"></textarea><br><br>
-  
-  <label for="speech-understandable-family">Is the child’s speech difficult for the family to understand?</label><br>
-  <input type="text" id="speech-understandable-family" name="speech-understandable-family"><br><br>
-  
-  <label for="speech-understandable-others">For others?</label><br>
-  <input type="text" id="speech-understandable-others" name="speech-understandable-others"><br><br>
-  
-  <label for="understanding-difficulty">Does the child have any difficulty understanding what others are saying?</label><br>
-  <input type="text" id="understanding-difficulty" name="understanding-difficulty"><br><br>
-  
-  <label for="use-gestures">Do you use gestures to make the child understand?</label><br>
-  <input type="text" id="use-gestures" name="use-gestures"><br><br>
-  
-  
-</form>
+  <p>At what age did the child begin to:</p>
+        
+        <label for="babble">Make repeated sounds/Babble:</label>
+        <input type="text" id="babble" name="babble">
+        
+        <label for="gestures">Use early gestures (i.e., clapping, thumbs-up, high-fives etc.):</label>
+        <input type="text" id="gestures" name="gestures">
+        
+        <label for="play-sounds">Use play sounds (i.e., animal and environmental sounds):</label>
+        <input type="text" id="play-sounds" name="play-sounds">
+        
+        <label for="first-words">Use first meaningful words:</label>
+        <input type="text" id="first-words" name="first-words">
+        
+        <label for="phrases">Use two and three word phrases:</label>
+        <input type="text" id="phrases" name="phrases">
+        
+        <label for="sentences">Use complete sentences:</label>
+        <input type="text" id="sentences" name="sentences">
+        
+        <label for="utterance-length">What is your child’s utterance length?</label>
+        <input type="text" id="utterance-length" name="utterance-length">
+        
+        <label for="needs-known">How does the child make needs and wants known to others?</label>
+        <input type="text" id="needs-known" name="needs-known">
+        
+        <label for="yes-no-questions">Does your child ask YES/NO questions? If yes, what kinds? (preference-based, factual, comprehension)</label>
+        <textarea id="yes-no-questions" name="yes-no-questions"></textarea>
+        
+        <label for="yes-no-answers">Does your child answer YES/NO questions? If yes, what kinds? (preference-based, factual, comprehension)</label>
+        <textarea id="yes-no-answers" name="yes-no-answers"></textarea>
+        
+        <label for="wh-questions-ask">Does your child ask -WH questions? If yes, which ones? (who, what, when, where, why, how)</label>
+        <textarea id="wh-questions-ask" name="wh-questions-ask"></textarea>
+        
+        <label for="wh-questions-answer">Does your child answer -WH questions? If yes, which ones? (who, what, when, where, why, how)</label>
+        <textarea id="wh-questions-answer" name="wh-questions-answer"></textarea>
+        
+        <label for="variety-communication">Does your child communicate for a variety of purposes through words or any other way? (i.e., requesting, commenting, protesting, self-advocacy etc.)?</label>
+        <textarea id="variety-communication" name="variety-communication"></textarea>
+        
+        <label for="scripts">Does your child use scripts that they have picked up from other sources (i.e., media, family, friends etc.) to communicate?</label>
+        <textarea id="scripts" name="scripts"></textarea>
+        
+        <label for="script-variety">If your child scripts, can they script for a variety of purposes (i.e., requesting, commenting, protesting, self-advocacy etc.)?</label>
+        <textarea id="script-variety" name="script-variety"></textarea>
+        
+        <label for="act-out">Does your child act out scenes that they have seen from other sources (i.e., media, family, friends etc.) and act them out exactly as they saw it?</label>
+        <textarea id="act-out" name="act-out"></textarea>
+        
+        <label for="family-understand">Is the child’s speech difficult for the family to understand?</label>
+        <input type="text" id="family-understand" name="family-understand">
+        
+        <label for="others-understand">For others?</label>
+        <input type="text" id="others-understand" name="others-understand">
+        
+        <label for="familiar-context">What percentage of your child’s speech do you understand, in a familiar context?</label>
+        <input type="text" id="familiar-context" name="familiar-context">
+        
+        <label for="unfamiliar-context">What percentage of your child’s speech do you understand, in an unfamiliar context?</label>
+        <input type="text" id="unfamiliar-context" name="unfamiliar-context">
+        
+        <label for="stranger-familiar">What percentage might a stranger understand their speech, in a familiar context?</label>
+        <input type="text" id="stranger-familiar" name="stranger-familiar">
+        
+        <label for="stranger-unfamiliar">What percentage might a stranger understand their speech, in an unfamiliar context?</label>
+        <input type="text" id="stranger-unfamiliar" name="stranger-unfamiliar">
+        
+        <label for="understanding-others">Does the child have any difficulty understanding what others are saying?</label>
+        <input type="text" id="understanding-others" name="understanding-others">
+        
+        <label for="follow-directions">Does your child follow directions? If yes, how many steps? With how much prompting/cueing? If no, why not? (compliance vs comprehension)</label>
+        <textarea id="follow-directions" name="follow-directions"></textarea>
+        
+        
+    </form>
 
   
 
@@ -1271,7 +1337,7 @@ input[type="text"] {
       <div class="form-container">
           <label>Leave out words:</label>
           <label>talk too fast:</label>
-          <label>stutter:</label>
+          <label>Stutter (repetitions, prolongations, blocks, interjections, tension) :</label>
           <input type="text" name="leave-out-words">
           <input type="text" name="talk-too-fast">
           <input type="text" name="stutter">
@@ -1319,6 +1385,9 @@ input[type="text"] {
   
   
     <label for="signs_gestures">Depend mainly on signs and gestures instead of speech:</label><br>
+    <textarea id="signs_gestures" name="signs_gestures" rows="4"></textarea><br>
+
+    <label for="game_conversation">Does your child take turns in games/conversations? If yes, how many turns?</label><br>
     <textarea id="signs_gestures" name="signs_gestures" rows="4"></textarea><br>
   
     <label for="other">Other (explain):</label><br>
